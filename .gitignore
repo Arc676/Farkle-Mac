@@ -9,6 +9,5 @@ build
 xcuserdata
 .*
 Version History
-Graphs
-*.ignore
 xcshareddata
+XCFs

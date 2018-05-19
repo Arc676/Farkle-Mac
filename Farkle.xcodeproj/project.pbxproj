@@ -17,6 +17,12 @@
 		710A267420AFD3F900D0F0CB /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 710A267320AFD3F800D0F0CB /* Credits.rtf */; };
 		710A267920AFD4A000D0F0CB /* libfarkle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 710A267720AFD4A000D0F0CB /* libfarkle.a */; };
 		710A267C20AFDD2800D0F0CB /* DieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 710A267B20AFDD2800D0F0CB /* DieView.m */; };
+		710A268420AFE2FC00D0F0CB /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 710A267E20AFE2FC00D0F0CB /* 1.png */; };
+		710A268520AFE2FC00D0F0CB /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 710A267F20AFE2FC00D0F0CB /* 2.png */; };
+		710A268620AFE2FC00D0F0CB /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 710A268020AFE2FC00D0F0CB /* 3.png */; };
+		710A268720AFE2FC00D0F0CB /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 710A268120AFE2FC00D0F0CB /* 4.png */; };
+		710A268820AFE2FC00D0F0CB /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 710A268220AFE2FC00D0F0CB /* 5.png */; };
+		710A268920AFE2FC00D0F0CB /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 710A268320AFE2FC00D0F0CB /* 6.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +43,12 @@
 		710A267820AFD4A000D0F0CB /* libfarkle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libfarkle.h; sourceTree = "<group>"; };
 		710A267A20AFDD2800D0F0CB /* DieView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DieView.h; sourceTree = "<group>"; };
 		710A267B20AFDD2800D0F0CB /* DieView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DieView.m; sourceTree = "<group>"; };
+		710A267E20AFE2FC00D0F0CB /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		710A267F20AFE2FC00D0F0CB /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		710A268020AFE2FC00D0F0CB /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		710A268120AFE2FC00D0F0CB /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		710A268220AFE2FC00D0F0CB /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		710A268320AFE2FC00D0F0CB /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 		710A264E20AFD1F500D0F0CB = {
 			isa = PBXGroup;
 			children = (
+				710A267D20AFE2FC00D0F0CB /* Dice */,
 				710A267520AFD42E00D0F0CB /* lib */,
 				710A266E20AFD26200D0F0CB /* Meta */,
 				710A265920AFD1F500D0F0CB /* Farkle */,
@@ -104,6 +117,19 @@
 				710A267820AFD4A000D0F0CB /* libfarkle.h */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		710A267D20AFE2FC00D0F0CB /* Dice */ = {
+			isa = PBXGroup;
+			children = (
+				710A267E20AFE2FC00D0F0CB /* 1.png */,
+				710A267F20AFE2FC00D0F0CB /* 2.png */,
+				710A268020AFE2FC00D0F0CB /* 3.png */,
+				710A268120AFE2FC00D0F0CB /* 4.png */,
+				710A268220AFE2FC00D0F0CB /* 5.png */,
+				710A268320AFE2FC00D0F0CB /* 6.png */,
+			);
+			path = Dice;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,9 +189,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710A268920AFE2FC00D0F0CB /* 6.png in Resources */,
+				710A268720AFE2FC00D0F0CB /* 4.png in Resources */,
+				710A268820AFE2FC00D0F0CB /* 5.png in Resources */,
 				710A267420AFD3F900D0F0CB /* Credits.rtf in Resources */,
 				710A267120AFD26800D0F0CB /* LICENSE in Resources */,
+				710A268520AFE2FC00D0F0CB /* 2.png in Resources */,
+				710A268620AFE2FC00D0F0CB /* 3.png in Resources */,
 				710A266120AFD1F900D0F0CB /* Assets.xcassets in Resources */,
+				710A268420AFE2FC00D0F0CB /* 1.png in Resources */,
 				710A267220AFD26800D0F0CB /* README.md in Resources */,
 				710A266420AFD1F900D0F0CB /* Main.storyboard in Resources */,
 			);
