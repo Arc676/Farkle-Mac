@@ -23,20 +23,41 @@
 
 #import "ViewController.h"
 
+#include "libfarkle.h"
+
+Roll* roll;
+GameState state;
+Player** players;
+
 @implementation ViewController
 
-- (void)viewDidLoad {
-	[super viewDidLoad];
-
-	// Do any additional setup after loading the view.
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+	if (players) {
+		NSMutableArray* nums = [NSMutableArray arrayWithCapacity:6];
+		Selection* sel = players[self.currentPlayer]->hand->selections[row];
+		for (int i = 0; i < sel->dieCount; i++) {
+			NSNumber* num = [NSNumber numberWithInt:sel->values[i]];
+			[nums addObject:num];
+		}
+		return [nums componentsJoinedByString:@" "];
+	}
+	return @"";
 }
 
-
-- (void)setRepresentedObject:(id)representedObject {
-	[super setRepresentedObject:representedObject];
-
-	// Update the view, if already loaded.
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+	if (players) {
+		return players[self.currentPlayer]->hand->timesSelected;
+	}
+	return 0;
 }
 
+- (IBAction)rollDice:(id)sender {
+}
+
+- (IBAction)confirmSelection:(id)sender {
+}
+
+- (IBAction)bankPoints:(id)sender {
+}
 
 @end

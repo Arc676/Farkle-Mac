@@ -22,9 +22,17 @@
 //See README and LICENSE for more details
 
 #import <Cocoa/Cocoa.h>
+#import "DieView.h"
 
-@interface ViewController : NSViewController
+@interface ViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
 
+@property (weak) IBOutlet DieView *dieView;
+
+@property (assign) int currentPlayer;
+
+- (IBAction)rollDice:(id)sender;
+- (IBAction)confirmSelection:(id)sender;
+- (IBAction)bankPoints:(id)sender;
 
 @end
 
