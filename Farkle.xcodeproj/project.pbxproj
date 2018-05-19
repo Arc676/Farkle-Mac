@@ -14,6 +14,7 @@
 		710A266720AFD1F900D0F0CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 710A266620AFD1F900D0F0CB /* main.m */; };
 		710A267120AFD26800D0F0CB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 710A266F20AFD26700D0F0CB /* LICENSE */; };
 		710A267220AFD26800D0F0CB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 710A267020AFD26700D0F0CB /* README.md */; };
+		710A267420AFD3F900D0F0CB /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 710A267320AFD3F800D0F0CB /* Credits.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		710A266820AFD1F900D0F0CB /* Farkle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Farkle.entitlements; sourceTree = "<group>"; };
 		710A266F20AFD26700D0F0CB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		710A267020AFD26700D0F0CB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		710A267320AFD3F800D0F0CB /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = Farkle/Credits.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		710A266E20AFD26200D0F0CB /* Meta */ = {
 			isa = PBXGroup;
 			children = (
+				710A267320AFD3F800D0F0CB /* Credits.rtf */,
 				710A266F20AFD26700D0F0CB /* LICENSE */,
 				710A267020AFD26700D0F0CB /* README.md */,
 			);
@@ -141,6 +144,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710A267420AFD3F900D0F0CB /* Credits.rtf in Resources */,
 				710A267120AFD26800D0F0CB /* LICENSE in Resources */,
 				710A266120AFD1F900D0F0CB /* Assets.xcassets in Resources */,
 				710A267220AFD26800D0F0CB /* README.md in Resources */,
