@@ -15,6 +15,7 @@
 		710A267120AFD26800D0F0CB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 710A266F20AFD26700D0F0CB /* LICENSE */; };
 		710A267220AFD26800D0F0CB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 710A267020AFD26700D0F0CB /* README.md */; };
 		710A267420AFD3F900D0F0CB /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 710A267320AFD3F800D0F0CB /* Credits.rtf */; };
+		710A267920AFD4A000D0F0CB /* libfarkle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 710A267720AFD4A000D0F0CB /* libfarkle.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		710A266F20AFD26700D0F0CB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		710A267020AFD26700D0F0CB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		710A267320AFD3F800D0F0CB /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = Credits.rtf; path = Farkle/Credits.rtf; sourceTree = "<group>"; };
+		710A267720AFD4A000D0F0CB /* libfarkle.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfarkle.a; sourceTree = "<group>"; };
+		710A267820AFD4A000D0F0CB /* libfarkle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libfarkle.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710A267920AFD4A000D0F0CB /* libfarkle.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +51,7 @@
 		710A264E20AFD1F500D0F0CB = {
 			isa = PBXGroup;
 			children = (
+				710A267520AFD42E00D0F0CB /* lib */,
 				710A266E20AFD26200D0F0CB /* Meta */,
 				710A265920AFD1F500D0F0CB /* Farkle */,
 				710A265820AFD1F500D0F0CB /* Products */,
@@ -85,6 +90,15 @@
 				710A267020AFD26700D0F0CB /* README.md */,
 			);
 			name = Meta;
+			sourceTree = "<group>";
+		};
+		710A267520AFD42E00D0F0CB /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				710A267720AFD4A000D0F0CB /* libfarkle.a */,
+				710A267820AFD4A000D0F0CB /* libfarkle.h */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,10 +310,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = T42F23M422;
+				HEADER_SEARCH_PATHS = inc/;
 				INFOPLIST_FILE = Farkle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = Arc676.Farkle;
@@ -315,10 +334,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = T42F23M422;
+				HEADER_SEARCH_PATHS = inc/;
 				INFOPLIST_FILE = Farkle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = Arc676.Farkle;
