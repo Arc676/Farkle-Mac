@@ -40,7 +40,7 @@
 		free(_roll);
 	}
 	if (_players) {
-		for (int i = 0; i < sizeof(_players) / sizeof(Player*); i++) {
+		for (int i = 0; i < self.pCount; i++) {
 			free(_players[i]->name);
 			free(_players[i]->hand->selections);
 			free(_players[i]->hand);
@@ -50,18 +50,19 @@
 	}
 
 	// initialize new game data
-	int pCount = [notification.userInfo[@"PlayerCount"] intValue];
+	self.pCount = [notification.userInfo[@"PlayerCount"] intValue];
 	self.turnLimit = [notification.userInfo[@"TurnCount"] intValue];
 
 	_roll = (Roll*)malloc(sizeof(Roll));
 	initRoll(_roll);
 
-	_players = (Player**)malloc(pCount * sizeof(Player*));
-	for (int i = 0; i < pCount; i++) {
+	_players = (Player**)malloc(self.pCount * sizeof(Player*));
+	for (int i = 0; i < self.pCount; i++) {
 		const char* name = [notification.userInfo[@"PlayerNames"][i] cStringUsingEncoding:NSUTF8StringEncoding];
 		_players[i] = createPlayer(name);
 	}
 	[self.dieView startGame];
+	[self enterState:ROLLING];
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -90,9 +91,8 @@
 	RollType type = determineRollType(_roll, sel);
 	switch (type) {
 		case FARKLE:
-			printf("Farkle!\n");
 			emptyHand(_players[_currentPlayer]);
-			[self endTurn];
+			[self enterState:TURN_ENDED];
 			break;
 		case STRAIGHT:
 			printf("Straight!\n");
@@ -102,10 +102,10 @@
 			}
 			printf("Selected %d worth of dice.\n", sel->value);
 			appendSelection(_players[_currentPlayer], sel);
-			_state = ROLLING;
+			[self enterState:ROLLING];
 			break;
 		default:
-			_state = PICKING;
+			[self enterState:PICKING];
 			break;
 	}
 	[self.dieView updateRoll:type];
@@ -115,7 +115,7 @@
 	Selection* sel = (Selection*)malloc(sizeof(Selection));
 	if (constructSelection(_roll, sel)) {
 		printf("Selected %d points' worth of dice.\n", sel->value);
-		_state = ROLLING;
+		[self enterState:ROLLING];
 		appendSelection(_players[_currentPlayer], sel);
 	} else {
 		printf("The selection is invalid\n");
@@ -129,7 +129,16 @@
 }
 
 - (void)endTurn {
-	_currentPlayer++;
+	_currentPlayer = (_currentPlayer + 1) % self.pCount;
+	initRoll(_roll);
+	[self enterState:ROLLING];
+}
+
+- (void)enterState:(GameState)state {
+	_state = state;
+	self.rollButton.enabled = state == ROLLING;
+	self.selectionButton.enabled = state == PICKING;
+	self.bankButton.enabled = state == ROLLING;
 }
 
 @end

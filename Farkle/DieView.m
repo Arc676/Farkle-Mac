@@ -26,6 +26,10 @@
 
 @implementation DieView
 
+- (BOOL)acceptsFirstMouse:(NSEvent *)event {
+	return YES;
+}
+
 - (void)awakeFromNib {
 	NSMutableArray* textures = [NSMutableArray arrayWithCapacity:6];
 	for (int i = 1; i <= 6; i++) {
@@ -40,8 +44,16 @@
 					@"30 15",
 					@"130 15"
 					];
+	NSMutableArray* array = [NSMutableArray arrayWithCapacity:6];
+	for (NSString* p in self.points) {
+		NSPoint point = NSPointFromString(p);
+		[array addObject:[NSString stringWithFormat:@"%d %d %d %d",
+						  (int)point.x - 5, (int)point.y - 5, 42, 42]];
+	}
+	self.rects = [array mutableCopy];
 	self.pickable = [@[@NO, @NO, @NO, @NO, @NO, @NO] mutableCopy];
 	self.gameStarted = NO;
+	self.hasFarkled = NO;
 	[super awakeFromNib];
 }
 
@@ -52,7 +64,7 @@
 
 - (void)drawRect:(NSRect)rect {
 	if (self.gameStarted) {
-		[self.userFeedback drawAtPoint:NSMakePoint(20, 210) withAttributes:nil];
+		[self.userFeedback drawAtPoint:NSMakePoint(20, 190) withAttributes:nil];
 		for (int i = 0; i < 6; i++) {
 			Die die = self.vc.roll->dice[i];
 			if (die.value != 0) {
@@ -70,7 +82,7 @@
 						} else {
 							[[NSColor redColor] set];
 						}
-						NSRectFill(NSMakeRect(point.x - 5, point.y - 5, 42, 42));
+						NSRectFill(NSRectFromString(self.rects[i]));
 					}
 					[dieTexture drawAtPoint:point
 								   fromRect:NSZeroRect
@@ -85,13 +97,15 @@
 }
 
 - (void)updateRoll:(RollType)type {
+	self.hasFarkled = NO;
 	int values[6];
 	countDiceValues(self.vc.roll, values);
 	int pickableDice[6];
 	determinePickableDice(self.vc.roll, values, pickableDice);
 	switch (type) {
 		case FARKLE:
-			self.userFeedback = @"Farkle!";
+			self.userFeedback = @"Farkle! Click on the board\nto pass turn.";
+			self.hasFarkled = YES;
 			break;
 		case STRAIGHT:
 			self.userFeedback = @"Straight!";
@@ -111,6 +125,23 @@
 		self.pickable[i] = @(pickableDice[i] > 0);
 	}
 	[self setNeedsDisplay:YES];
+}
+
+- (void)mouseUp:(NSEvent *)event {
+	if (self.hasFarkled) {
+		[self.vc endTurn];
+		return;
+	}
+	int i = 0;
+	NSPoint loc = [self convertPoint:event.locationInWindow fromView:nil];
+	for (NSString* r in self.rects) {
+		if (NSPointInRect(loc, NSRectFromString(r))) {
+			toggleDie(self.vc.roll, i);
+			[self setNeedsDisplay:YES];
+			return;
+		}
+		i++;
+	}
 }
 
 @end

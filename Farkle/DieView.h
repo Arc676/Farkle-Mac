@@ -36,7 +36,9 @@
 
 @property (strong) NSArray* textures;
 @property (strong) NSArray* points;
+@property (strong) NSArray* rects;
 
+@property (assign) BOOL hasFarkled;
 @property (strong) NSMutableArray* pickable;
 @property (strong) NSString* userFeedback;
 

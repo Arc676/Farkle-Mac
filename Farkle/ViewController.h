@@ -33,6 +33,7 @@
 @property (weak) IBOutlet NSButton *selectionButton;
 @property (weak) IBOutlet NSButton *bankButton;
 
+@property (assign) int pCount;
 @property (assign) int currentPlayer;
 @property (assign) int turnLimit;
 
@@ -41,6 +42,7 @@
 @property (assign) Player** players;
 
 - (void) startGame:(NSNotification*)notification;
+- (void) enterState:(GameState)state;
 - (void) endTurn;
 
 - (IBAction)rollDice:(id)sender;
