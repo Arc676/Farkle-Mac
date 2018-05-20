@@ -23,8 +23,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+#include <stdlib.h>
+#include <time.h>
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-
 @end
-

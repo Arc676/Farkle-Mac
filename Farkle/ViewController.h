@@ -35,6 +35,7 @@
 
 @property (assign) int pCount;
 @property (assign) int currentPlayer;
+@property (assign) int accumulatedPoints;
 @property (assign) int turnLimit;
 
 @property (assign) Roll* roll;

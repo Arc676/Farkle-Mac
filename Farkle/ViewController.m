@@ -31,6 +31,7 @@
 										   selector:@selector(startGame:)
 											   name:[NewGameController newGameNotifName]
 											 object:nil];
+	self.accumulatedPoints = 0;
 	[self.dieView setVc:self];
 }
 
@@ -62,7 +63,7 @@
 		_players[i] = createPlayer(name);
 	}
 	[self.dieView startGame];
-	[self enterState:ROLLING];
+	[self enterState:FIRST_ROLL];
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -114,7 +115,8 @@
 - (IBAction)confirmSelection:(id)sender {
 	Selection* sel = (Selection*)malloc(sizeof(Selection));
 	if (constructSelection(_roll, sel)) {
-		printf("Selected %d points' worth of dice.\n", sel->value);
+		self.accumulatedPoints += sel->value;
+		[self.bankButton setTitle:[NSString stringWithFormat:@"Bank %d points", self.accumulatedPoints]];
 		[self enterState:ROLLING];
 		appendSelection(_players[_currentPlayer], sel);
 	} else {
@@ -130,13 +132,15 @@
 
 - (void)endTurn {
 	_currentPlayer = (_currentPlayer + 1) % self.pCount;
+	self.accumulatedPoints = 0;
+	[self.bankButton setTitle:@"Bank"];
 	initRoll(_roll);
-	[self enterState:ROLLING];
+	[self enterState:FIRST_ROLL];
 }
 
 - (void)enterState:(GameState)state {
 	_state = state;
-	self.rollButton.enabled = state == ROLLING;
+	self.rollButton.enabled = state & ROLLING;
 	self.selectionButton.enabled = state == PICKING;
 	self.bankButton.enabled = state == ROLLING;
 }

@@ -132,6 +132,9 @@
 		[self.vc endTurn];
 		return;
 	}
+	if (self.vc.state != PICKING) {
+		return;
+	}
 	int i = 0;
 	NSPoint loc = [self convertPoint:event.locationInWindow fromView:nil];
 	for (NSString* r in self.rects) {

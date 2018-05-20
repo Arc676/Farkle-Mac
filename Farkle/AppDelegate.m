@@ -25,4 +25,8 @@
 
 @implementation AppDelegate
 
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+	srand((unsigned int)time(NULL));
+}
+
 @end
