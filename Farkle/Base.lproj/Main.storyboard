@@ -494,6 +494,7 @@
                         <outlet property="dieView" destination="t4P-zR-mfv" id="Wdg-Rr-kjl"/>
                         <outlet property="rollButton" destination="IyU-4Q-8J7" id="TJK-6l-LlI"/>
                         <outlet property="selectionButton" destination="NCp-uC-OmM" id="md4-Jh-gEv"/>
+                        <outlet property="selectionsTable" destination="KHM-2F-bMY" id="CUv-Sa-dF9"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

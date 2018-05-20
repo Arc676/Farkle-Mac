@@ -28,10 +28,14 @@
 
 @interface ViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
 
+@property (weak) IBOutlet NSTableView *selectionsTable;
 @property (weak) IBOutlet DieView *dieView;
+
 @property (weak) IBOutlet NSButton *rollButton;
 @property (weak) IBOutlet NSButton *selectionButton;
 @property (weak) IBOutlet NSButton *bankButton;
+
+@property (strong) NSAlert* invalidSelectionAlert;
 
 @property (assign) int pCount;
 @property (assign) int currentPlayer;

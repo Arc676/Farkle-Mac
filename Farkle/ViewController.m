@@ -32,6 +32,9 @@
 											   name:[NewGameController newGameNotifName]
 											 object:nil];
 	self.accumulatedPoints = 0;
+	self.invalidSelectionAlert = [[NSAlert alloc] init];
+	self.invalidSelectionAlert.messageText = @"Cannot select these dice";
+	self.invalidSelectionAlert.informativeText = @"The given die selection is invalid";
 	[self.dieView setVc:self];
 }
 
@@ -119,8 +122,9 @@
 		[self.bankButton setTitle:[NSString stringWithFormat:@"Bank %d points", self.accumulatedPoints]];
 		[self enterState:ROLLING];
 		appendSelection(_players[_currentPlayer], sel);
+		[self.selectionsTable reloadData];
 	} else {
-		printf("The selection is invalid\n");
+		[self.invalidSelectionAlert runModal];
 		deselectRoll(_roll);
 	}
 }
@@ -132,8 +136,12 @@
 
 - (void)endTurn {
 	_currentPlayer = (_currentPlayer + 1) % self.pCount;
+
 	self.accumulatedPoints = 0;
 	[self.bankButton setTitle:@"Bank"];
+
+	[self.selectionsTable reloadData];
+
 	initRoll(_roll);
 	[self enterState:FIRST_ROLL];
 }
