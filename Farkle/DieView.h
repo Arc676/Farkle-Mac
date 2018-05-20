@@ -33,8 +33,11 @@
 @property (strong) ViewController* vc;
 
 @property (assign) BOOL gameStarted;
+
 @property (strong) NSArray* textures;
 @property (strong) NSArray* points;
+
+@property (strong) NSMutableArray* pickable;
 @property (strong) NSString* userFeedback;
 
 - (void) startGame;

@@ -40,6 +40,7 @@
 					@"30 15",
 					@"130 15"
 					];
+	self.pickable = [@[@NO, @NO, @NO, @NO, @NO, @NO] mutableCopy];
 	self.gameStarted = NO;
 	[super awakeFromNib];
 }
@@ -55,12 +56,27 @@
 		for (int i = 0; i < 6; i++) {
 			Die die = self.vc.roll->dice[i];
 			if (die.value != 0) {
-//				if (die.picked) {
-					[(NSImage*)self.textures[die.value - 1] drawAtPoint:NSPointFromString(self.points[i])
-															   fromRect:NSZeroRect
-															  operation:NSCompositeSourceOver
-															   fraction:1.0f];
-//				}
+				NSPoint point = NSPointFromString(self.points[i]);
+				NSImage* dieTexture = (NSImage*)self.textures[die.value - 1];
+				if (die.picked && !die.pickedThisRoll) {
+					[dieTexture drawAtPoint:point
+								   fromRect:NSZeroRect
+								  operation:NSCompositeSourceOver
+								   fraction:0.5f];
+				} else {
+					if (![self.pickable[i] boolValue] || die.pickedThisRoll) {
+						if (die.pickedThisRoll) {
+							[[NSColor greenColor] set];
+						} else {
+							[[NSColor redColor] set];
+						}
+						NSRectFill(NSMakeRect(point.x - 5, point.y - 5, 42, 42));
+					}
+					[dieTexture drawAtPoint:point
+								   fromRect:NSZeroRect
+								  operation:NSCompositeSourceOver
+								   fraction:1.0f];
+				}
 			}
 		}
 	} else {
@@ -69,19 +85,30 @@
 }
 
 - (void)updateRoll:(RollType)type {
+	int values[6];
+	countDiceValues(self.vc.roll, values);
+	int pickableDice[6];
+	determinePickableDice(self.vc.roll, values, pickableDice);
 	switch (type) {
 		case FARKLE:
 			self.userFeedback = @"Farkle!";
 			break;
 		case STRAIGHT:
 			self.userFeedback = @"Straight!";
-			break;
 		case TRIPLE_PAIR:
-			self.userFeedback = @"Triple pair!";
+			if (type != STRAIGHT) {
+				self.userFeedback = @"Triple pair!";
+			}
+			for (int i = 0; i < 6; i++) {
+				pickableDice[i] = 1;
+			}
 			break;
 		default:
 			self.userFeedback = @"";
 			break;
+	}
+	for (int i = 0; i < 6; i++) {
+		self.pickable[i] = @(pickableDice[i] > 0);
 	}
 	[self setNeedsDisplay:YES];
 }
