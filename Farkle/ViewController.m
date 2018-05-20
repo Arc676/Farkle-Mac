@@ -31,6 +31,19 @@ Player** players;
 
 @implementation ViewController
 
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	[NSNotificationCenter.defaultCenter addObserver:self
+										   selector:@selector(startGame:)
+											   name:[NewGameController newGameNotifName]
+											 object:nil];
+}
+
+- (void)startGame:(NSNotification *)notification {
+	int pCount = [notification.userInfo[@"PlayerCount"] intValue];
+	int turns = [notification.userInfo[@"TurnCount"] intValue];
+}
+
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	if (players) {
 		NSMutableArray* nums = [NSMutableArray arrayWithCapacity:6];

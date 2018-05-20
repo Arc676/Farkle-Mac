@@ -1,8 +1,8 @@
 //
-//  ViewController.h
+//  NewGameController.m
 //  Farkle
 //
-//  Created by Alessandro Vinciguerra on 2018/05/19.
+//  Created by Alessandro Vinciguerra on 2018/05/20.
 //      <alesvinciguerra@gmail.com>
 //Copyright (C) 2018 Arc676/Alessandro Vinciguerra
 
@@ -21,22 +21,25 @@
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //See README and LICENSE for more details
 
-#import <Cocoa/Cocoa.h>
-
-#import "DieView.h"
 #import "NewGameController.h"
 
-@interface ViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
+@implementation NewGameController
 
-@property (weak) IBOutlet DieView *dieView;
+- (IBAction)cancel:(id)sender {
+	//
+}
 
-@property (assign) int currentPlayer;
+- (IBAction)startGame:(id)sender {
+	[NSNotificationCenter.defaultCenter postNotificationName:[NewGameController newGameNotifName]
+													  object:self
+													userInfo:@{
+															   @"PlayerCount" : @([self.playerCount intValue]),
+															   @"TurnCount" : @([self.turnCount intValue])
+															   }];
+}
 
-- (void) startGame:(NSNotification*)notification;
-
-- (IBAction)rollDice:(id)sender;
-- (IBAction)confirmSelection:(id)sender;
-- (IBAction)bankPoints:(id)sender;
++ (NSNotificationName)newGameNotifName {
+	return @"com.arc676.Farkle.startGame";
+}
 
 @end
-

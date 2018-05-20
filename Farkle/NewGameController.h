@@ -1,8 +1,8 @@
 //
-//  ViewController.h
+//  NewGameController.h
 //  Farkle
 //
-//  Created by Alessandro Vinciguerra on 2018/05/19.
+//  Created by Alessandro Vinciguerra on 2018/05/20.
 //      <alesvinciguerra@gmail.com>
 //Copyright (C) 2018 Arc676/Alessandro Vinciguerra
 
@@ -23,20 +23,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "DieView.h"
-#import "NewGameController.h"
+@interface NewGameController : NSViewController
 
-@interface ViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
+@property (weak) IBOutlet NSTextField *playerCount;
+@property (weak) IBOutlet NSTextField *turnCount;
 
-@property (weak) IBOutlet DieView *dieView;
+- (IBAction)cancel:(id)sender;
+- (IBAction)startGame:(id)sender;
 
-@property (assign) int currentPlayer;
-
-- (void) startGame:(NSNotification*)notification;
-
-- (IBAction)rollDice:(id)sender;
-- (IBAction)confirmSelection:(id)sender;
-- (IBAction)bankPoints:(id)sender;
++ (NSNotificationName) newGameNotifName;
 
 @end
-

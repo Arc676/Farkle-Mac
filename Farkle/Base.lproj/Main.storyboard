@@ -500,7 +500,7 @@
         <!--New Game-->
         <scene sceneID="fA7-9J-cYW">
             <objects>
-                <viewController title="New Game" id="60P-Vr-tRW" sceneMemberID="viewController">
+                <viewController title="New Game" id="60P-Vr-tRW" customClass="NewGameController" sceneMemberID="viewController">
                     <view key="view" id="zC4-Lo-AJf">
                         <rect key="frame" x="0.0" y="0.0" width="255" height="138"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -562,6 +562,9 @@
 Gw
 </string>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="cancel:" target="60P-Vr-tRW" id="u3o-lL-G8g"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ifd-3a-BT9">
                                 <rect key="frame" x="137" y="13" width="110" height="32"/>
@@ -570,9 +573,16 @@ Gw
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="startGame:" target="60P-Vr-tRW" id="vhM-Jb-R2h"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="playerCount" destination="QYa-zr-Ync" id="oyc-4s-SwV"/>
+                        <outlet property="turnCount" destination="uTK-mG-q38" id="hYF-mb-qcQ"/>
+                    </connections>
                 </viewController>
                 <customObject id="0Iz-Gw-xs8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

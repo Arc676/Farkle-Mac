@@ -23,6 +23,7 @@
 		710A268720AFE2FC00D0F0CB /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 710A268120AFE2FC00D0F0CB /* 4.png */; };
 		710A268820AFE2FC00D0F0CB /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 710A268220AFE2FC00D0F0CB /* 5.png */; };
 		710A268920AFE2FC00D0F0CB /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 710A268320AFE2FC00D0F0CB /* 6.png */; };
+		710A268C20B10BC800D0F0CB /* NewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710A268B20B10BC800D0F0CB /* NewGameController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		710A268120AFE2FC00D0F0CB /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		710A268220AFE2FC00D0F0CB /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		710A268320AFE2FC00D0F0CB /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		710A268A20B10BC800D0F0CB /* NewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewGameController.h; sourceTree = "<group>"; };
+		710A268B20B10BC800D0F0CB /* NewGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewGameController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,8 @@
 				710A265E20AFD1F500D0F0CB /* ViewController.m */,
 				710A267A20AFDD2800D0F0CB /* DieView.h */,
 				710A267B20AFDD2800D0F0CB /* DieView.m */,
+				710A268A20B10BC800D0F0CB /* NewGameController.h */,
+				710A268B20B10BC800D0F0CB /* NewGameController.m */,
 				710A266020AFD1F900D0F0CB /* Assets.xcassets */,
 				710A266220AFD1F900D0F0CB /* Main.storyboard */,
 				710A266520AFD1F900D0F0CB /* Info.plist */,
@@ -210,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710A268C20B10BC800D0F0CB /* NewGameController.m in Sources */,
 				710A265F20AFD1F500D0F0CB /* ViewController.m in Sources */,
 				710A267C20AFDD2800D0F0CB /* DieView.m in Sources */,
 				710A266720AFD1F900D0F0CB /* main.m in Sources */,
