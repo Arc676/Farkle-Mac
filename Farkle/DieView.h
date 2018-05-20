@@ -23,12 +23,21 @@
 
 #import <Cocoa/Cocoa.h>
 
+#include <stdlib.h>
+#include "libfarkle.h"
+
+@class ViewController;
+
 @interface DieView : NSView
 
+@property (strong) ViewController* vc;
+
 @property (assign) BOOL gameStarted;
-@property (strong) NSArray* dice;
 @property (strong) NSArray* textures;
+@property (strong) NSArray* points;
+@property (strong) NSString* userFeedback;
 
 - (void) startGame;
+- (void) updateRoll:(RollType)type;
 
 @end

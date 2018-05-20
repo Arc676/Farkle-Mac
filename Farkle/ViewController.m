@@ -23,13 +23,6 @@
 
 #import "ViewController.h"
 
-#include <stdlib.h>
-#include "libfarkle.h"
-
-Roll* roll;
-GameState state;
-Player** players;
-
 @implementation ViewController
 
 - (void)viewDidLoad {
@@ -38,24 +31,43 @@ Player** players;
 										   selector:@selector(startGame:)
 											   name:[NewGameController newGameNotifName]
 											 object:nil];
+	[self.dieView setVc:self];
 }
 
 - (void)startGame:(NSNotification *)notification {
+	// free old memory if needed
+	if (_roll) {
+		free(_roll);
+	}
+	if (_players) {
+		for (int i = 0; i < sizeof(_players) / sizeof(Player*); i++) {
+			free(_players[i]->name);
+			free(_players[i]->hand->selections);
+			free(_players[i]->hand);
+			free(_players[i]);
+		}
+		free(_players);
+	}
+
+	// initialize new game data
 	int pCount = [notification.userInfo[@"PlayerCount"] intValue];
 	self.turnLimit = [notification.userInfo[@"TurnCount"] intValue];
-	roll = (Roll*)malloc(sizeof(Roll));
-	players = (Player**)malloc(pCount * sizeof(Player*));
+
+	_roll = (Roll*)malloc(sizeof(Roll));
+	initRoll(_roll);
+
+	_players = (Player**)malloc(pCount * sizeof(Player*));
 	for (int i = 0; i < pCount; i++) {
 		const char* name = [notification.userInfo[@"PlayerNames"][i] cStringUsingEncoding:NSUTF8StringEncoding];
-		players[i] = createPlayer(name);
+		_players[i] = createPlayer(name);
 	}
 	[self.dieView startGame];
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-	if (players) {
+	if (_players) {
 		NSMutableArray* nums = [NSMutableArray arrayWithCapacity:6];
-		Selection* sel = players[self.currentPlayer]->hand->selections[row];
+		Selection* sel = _players[_currentPlayer]->hand->selections[row];
 		for (int i = 0; i < sel->dieCount; i++) {
 			NSNumber* num = [NSNumber numberWithInt:sel->values[i]];
 			[nums addObject:num];
@@ -66,25 +78,20 @@ Player** players;
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-	if (players) {
-		return players[self.currentPlayer]->hand->timesSelected;
+	if (_players) {
+		return _players[_currentPlayer]->hand->timesSelected;
 	}
 	return 0;
 }
 
 - (IBAction)rollDice:(id)sender {
-	newRoll(roll);
-	NSMutableArray* array = [NSMutableArray arrayWithCapacity:6];
-	for (int i = 0; i < 6; i++) {
-		array[i] = @(roll->dice[i].value);
-	}
-	[self.dieView setDice:array];
+	newRoll(_roll);
 	Selection* sel = (Selection*)malloc(sizeof(Selection));
-	RollType type = determineRollType(roll, sel);
+	RollType type = determineRollType(_roll, sel);
 	switch (type) {
 		case FARKLE:
 			printf("Farkle!\n");
-			emptyHand(players[self.currentPlayer]);
+			emptyHand(_players[_currentPlayer]);
 			[self endTurn];
 			break;
 		case STRAIGHT:
@@ -94,34 +101,35 @@ Player** players;
 				printf("Triple pair!\n");
 			}
 			printf("Selected %d worth of dice.\n", sel->value);
-			appendSelection(players[self.currentPlayer], sel);
-			state = ROLLING;
+			appendSelection(_players[_currentPlayer], sel);
+			_state = ROLLING;
 			break;
 		default:
-			state = PICKING;
+			_state = PICKING;
 			break;
 	}
+	[self.dieView updateRoll:type];
 }
 
 - (IBAction)confirmSelection:(id)sender {
 	Selection* sel = (Selection*)malloc(sizeof(Selection));
-	if (constructSelection(roll, sel)) {
+	if (constructSelection(_roll, sel)) {
 		printf("Selected %d points' worth of dice.\n", sel->value);
-		state = ROLLING;
-		appendSelection(players[self.currentPlayer], sel);
+		_state = ROLLING;
+		appendSelection(_players[_currentPlayer], sel);
 	} else {
 		printf("The selection is invalid\n");
-		deselectRoll(roll);
+		deselectRoll(_roll);
 	}
 }
 
 - (IBAction)bankPoints:(id)sender {
-	bankPoints(players[self.currentPlayer]);
+	bankPoints(_players[_currentPlayer]);
 	[self endTurn];
 }
 
 - (void)endTurn {
-	self.currentPlayer++;
+	_currentPlayer++;
 }
 
 @end

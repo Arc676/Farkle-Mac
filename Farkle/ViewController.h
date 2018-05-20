@@ -36,6 +36,10 @@
 @property (assign) int currentPlayer;
 @property (assign) int turnLimit;
 
+@property (assign) Roll* roll;
+@property (assign) GameState state;
+@property (assign) Player** players;
+
 - (void) startGame:(NSNotification*)notification;
 - (void) endTurn;
 
