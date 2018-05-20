@@ -61,7 +61,7 @@
                                         <menuItem title="New Game" keyEquivalent="n" id="Was-JA-tGl">
                                             <connections>
                                                 <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
-                                                <segue destination="60P-Vr-tRW" kind="modal" id="2lq-23-rTg"/>
+                                                <segue destination="13t-iN-Tgd" kind="show" id="tgm-M0-rx5"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
@@ -500,16 +500,16 @@
             </objects>
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
-        <!--New Game-->
+        <!--New Game Controller-->
         <scene sceneID="fA7-9J-cYW">
             <objects>
-                <viewController title="New Game" id="60P-Vr-tRW" customClass="NewGameController" sceneMemberID="viewController">
+                <viewController id="60P-Vr-tRW" customClass="NewGameController" sceneMemberID="viewController">
                     <view key="view" id="zC4-Lo-AJf">
-                        <rect key="frame" x="0.0" y="0.0" width="255" height="138"/>
+                        <rect key="frame" x="0.0" y="0.0" width="261" height="347"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpl-py-Uhy">
-                                <rect key="frame" x="18" y="101" width="109" height="17"/>
+                                <rect key="frame" x="18" y="310" width="109" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Set up new game" id="iH1-6h-v5T">
                                     <font key="font" metaFont="system"/>
@@ -518,7 +518,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RP3-0V-Stt">
-                                <rect key="frame" x="18" y="76" width="48" height="17"/>
+                                <rect key="frame" x="18" y="285" width="48" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Players" id="dnS-em-7cB">
                                     <font key="font" metaFont="system"/>
@@ -527,7 +527,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYa-zr-Ync">
-                                <rect key="frame" x="72" y="74" width="169" height="22"/>
+                                <rect key="frame" x="72" y="283" width="169" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="uHb-f6-LD2">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="PD0-9Y-vNy"/>
@@ -535,9 +535,12 @@
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <action selector="changePlayerCount:" target="60P-Vr-tRW" id="fLC-JZ-tfg"/>
+                                </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PkY-hM-BQ9">
-                                <rect key="frame" x="18" y="49" width="70" height="17"/>
+                                <rect key="frame" x="18" y="258" width="70" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Turn count" id="qVs-2W-Vpq">
                                     <font key="font" metaFont="system"/>
@@ -546,7 +549,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uTK-mG-q38">
-                                <rect key="frame" x="94" y="47" width="147" height="22"/>
+                                <rect key="frame" x="94" y="256" width="147" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Fw0-BC-ZG5">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="cAt-YG-wak"/>
@@ -580,16 +583,86 @@ Gw
                                     <action selector="startGame:" target="60P-Vr-tRW" id="vhM-Jb-R2h"/>
                                 </connections>
                             </button>
+                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fw-7b-yIr">
+                                <rect key="frame" x="20" y="53" width="221" height="195"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <clipView key="contentView" ambiguous="YES" id="Bs5-i1-vFO">
+                                    <rect key="frame" x="1" y="23" width="219" height="171"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="LF9-ze-N5W" id="Qq7-7k-khi">
+                                            <rect key="frame" x="0.0" y="0.0" width="219" height="171"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <size key="intercellSpacing" width="3" height="2"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn identifier="" width="116" minWidth="40" maxWidth="1000" id="X7f-HQ-w4x">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Player Name">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="Hku-Ov-DHY">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="60P-Vr-tRW" id="Fbf-fb-VNs"/>
+                                                <outlet property="delegate" destination="60P-Vr-tRW" id="f72-1Z-bhj"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Rzk-rc-myn">
+                                    <rect key="frame" x="1" y="179" width="219" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="72P-ha-PZ0">
+                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <tableHeaderView key="headerView" id="LF9-ze-N5W">
+                                    <rect key="frame" x="0.0" y="0.0" width="219" height="23"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableHeaderView>
+                            </scrollView>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="nameTable" destination="Qq7-7k-khi" id="w15-iK-wta"/>
                         <outlet property="playerCount" destination="QYa-zr-Ync" id="oyc-4s-SwV"/>
                         <outlet property="turnCount" destination="uTK-mG-q38" id="hYF-mb-qcQ"/>
                     </connections>
                 </viewController>
                 <customObject id="0Iz-Gw-xs8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="560.5" y="493"/>
+            <point key="canvasLocation" x="689.5" y="909.5"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="iU5-nU-38D">
+            <objects>
+                <windowController id="13t-iN-Tgd" sceneMemberID="viewController">
+                    <window key="window" title="New Game" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="63g-wu-TvD">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="13t-iN-Tgd" id="j9y-jx-l9j"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="60P-Vr-tRW" kind="relationship" relationship="window.shadowedContentViewController" id="wag-mZ-FIP"/>
+                    </connections>
+                </windowController>
+                <customObject id="13P-35-EIb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="686" y="410"/>
         </scene>
     </scenes>
 </document>

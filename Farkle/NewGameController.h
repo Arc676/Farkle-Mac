@@ -23,10 +23,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface NewGameController : NSViewController
+@interface NewGameController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
 
 @property (weak) IBOutlet NSTextField *playerCount;
 @property (weak) IBOutlet NSTextField *turnCount;
+@property (weak) IBOutlet NSTableView *nameTable;
+
+@property (assign) int pCount;
+@property (strong) NSMutableArray* playerNames;
+
+- (IBAction)changePlayerCount:(NSTextField *)sender;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)startGame:(id)sender;

@@ -46,7 +46,8 @@ Player** players;
 	roll = (Roll*)malloc(sizeof(Roll));
 	players = (Player**)malloc(pCount * sizeof(Player*));
 	for (int i = 0; i < pCount; i++) {
-		players[i] = createPlayer("");
+		const char* name = [notification.userInfo[@"PlayerNames"][i] cStringUsingEncoding:NSUTF8StringEncoding];
+		players[i] = createPlayer(name);
 	}
 	[self.dieView startGame];
 }
