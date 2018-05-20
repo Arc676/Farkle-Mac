@@ -36,6 +36,8 @@
 @property (weak) IBOutlet NSButton *bankButton;
 
 @property (strong) NSAlert* invalidSelectionAlert;
+@property (strong) NSAlert* gameOverAlert;
+@property (strong) NSSavePanel* savePanel;
 
 @property (assign) int pCount;
 @property (assign) int currentPlayer;

@@ -32,9 +32,19 @@
 											   name:[NewGameController newGameNotifName]
 											 object:nil];
 	self.accumulatedPoints = 0;
+
 	self.invalidSelectionAlert = [[NSAlert alloc] init];
 	self.invalidSelectionAlert.messageText = @"Cannot select these dice";
 	self.invalidSelectionAlert.informativeText = @"The given die selection is invalid";
+
+	self.gameOverAlert = [[NSAlert alloc] init];
+	self.gameOverAlert.messageText = @"Game over";
+	self.gameOverAlert.informativeText = @"The turn limit has been reached";
+	[self.gameOverAlert addButtonWithTitle:@"Save scores"];
+	[self.gameOverAlert addButtonWithTitle:@"Discard scores"];
+
+	self.savePanel = [NSSavePanel savePanel];
+
 	[self.dieView setVc:self];
 }
 
@@ -63,15 +73,20 @@
 	_players = (Player**)malloc(self.pCount * sizeof(Player*));
 	for (int i = 0; i < self.pCount; i++) {
 		const char* name = [notification.userInfo[@"PlayerNames"][i] cStringUsingEncoding:NSUTF8StringEncoding];
-		_players[i] = createPlayer(name);
+		char* heapName = (char*)malloc(strlen(name));
+		memcpy(heapName, name, strlen(name));
+		_players[i] = createPlayer(heapName);
 	}
-	[self.dieView startGame];
+	[self.dieView setGameState:YES];
 	[self enterState:FIRST_ROLL];
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	if (_players) {
 		Selection* sel = _players[_currentPlayer]->hand->selections[row];
+		if (!sel) {
+			return @"";
+		}
 		if ([tableColumn.title isEqualToString:@"Selection"]) {
 			NSMutableArray* nums = [NSMutableArray arrayWithCapacity:6];
 			for (int i = 0; i < sel->dieCount; i++) {
@@ -133,6 +148,26 @@
 
 - (void)endTurn {
 	_currentPlayer = (_currentPlayer + 1) % self.pCount;
+	if (_currentPlayer == 0) {
+		self.turnLimit--;
+		if (self.turnLimit <= 0) {
+			[self.dieView setGameState:NO];
+			if ([self.gameOverAlert runModal] == NSAlertFirstButtonReturn) {
+				if ([self.savePanel runModal] == NSFileHandlingPanelOKButton) {
+					NSMutableString* str = [NSMutableString string];
+					if ([[NSFileManager defaultManager] fileExistsAtPath:self.savePanel.URL.absoluteString]) {
+						str = [NSMutableString stringWithContentsOfURL:self.savePanel.URL encoding:NSUTF8StringEncoding error:nil];
+						[str appendString:@"\n\n"];
+					}
+					[str appendFormat:@"%@\n", [NSDate date]];
+					for (int i = 0; i < self.pCount; i++) {
+						[str appendFormat:@"%s - %d\n", _players[i]->name, _players[i]->score];
+					}
+					[str writeToURL:self.savePanel.URL atomically:YES encoding:NSUTF8StringEncoding error:nil];
+				}
+			}
+		}
+	}
 
 	self.accumulatedPoints = 0;
 	[self.bankButton setTitle:@"Bank"];
@@ -141,6 +176,12 @@
 
 	initRoll(_roll);
 	[self enterState:FIRST_ROLL];
+
+	[self.view.window setTitle:[NSString stringWithFormat:@"%s's turn. Score: %d",
+								_players[_currentPlayer]->name,
+								_players[_currentPlayer]->score]];
+
+	[self.dieView setNeedsDisplay:YES];
 }
 
 - (void)enterState:(GameState)state {

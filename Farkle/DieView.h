@@ -23,7 +23,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-#include <stdlib.h>
 #include "libfarkle.h"
 
 @class ViewController;
@@ -42,7 +41,7 @@
 @property (strong) NSMutableArray* pickable;
 @property (strong) NSString* userFeedback;
 
-- (void) startGame;
+- (void) setGameState:(BOOL)inProgress;
 - (void) updateRoll:(RollType)type;
 
 @end

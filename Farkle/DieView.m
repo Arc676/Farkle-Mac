@@ -57,8 +57,8 @@
 	[super awakeFromNib];
 }
 
-- (void)startGame {
-	self.gameStarted = YES;
+- (void)setGameState:(BOOL)inProgress {
+	self.gameStarted = inProgress;
 	[self setNeedsDisplay:YES];
 }
 
