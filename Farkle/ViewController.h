@@ -42,7 +42,7 @@
 @property (assign) int pCount;
 @property (assign) int currentPlayer;
 @property (assign) int accumulatedPoints;
-@property (assign) int turnLimit;
+@property (assign) int turnLimit, currentTurn;
 
 @property (assign) Roll* roll;
 @property (assign) GameState state;

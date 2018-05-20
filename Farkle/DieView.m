@@ -60,6 +60,7 @@
 - (void)setGameState:(BOOL)inProgress {
 	self.gameStarted = inProgress;
 	[self setNeedsDisplay:YES];
+	self.userFeedback = @"";
 }
 
 - (void)drawRect:(NSRect)rect {
@@ -129,6 +130,7 @@
 
 - (void)mouseUp:(NSEvent *)event {
 	if (self.hasFarkled) {
+		self.userFeedback = @"";
 		[self.vc endTurn];
 		return;
 	}

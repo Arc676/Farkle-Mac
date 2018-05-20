@@ -32,6 +32,7 @@
 											   name:[NewGameController newGameNotifName]
 											 object:nil];
 	self.accumulatedPoints = 0;
+	self.currentTurn = 1;
 
 	self.invalidSelectionAlert = [[NSAlert alloc] init];
 	self.invalidSelectionAlert.messageText = @"Cannot select these dice";
@@ -79,6 +80,8 @@
 	}
 	[self.dieView setGameState:YES];
 	[self enterState:FIRST_ROLL];
+	[self.view.window setTitle:[NSString stringWithFormat:@"%s's turn 1 of %d. Score: 0",
+								_players[0]->name, self.turnLimit]];
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -148,9 +151,26 @@
 
 - (void)endTurn {
 	_currentPlayer = (_currentPlayer + 1) % self.pCount;
+
+	self.accumulatedPoints = 0;
+	[self.bankButton setTitle:@"Bank"];
+
+	[self.selectionsTable reloadData];
+
+	initRoll(_roll);
+	[self enterState:FIRST_ROLL];
+
+	[self.view.window setTitle:[NSString stringWithFormat:@"%s's turn %d of %d. Score: %d",
+								_players[_currentPlayer]->name,
+								self.currentTurn,
+								self.turnLimit,
+								_players[_currentPlayer]->score]];
+
+	[self.dieView setNeedsDisplay:YES];
+
 	if (_currentPlayer == 0) {
-		self.turnLimit--;
-		if (self.turnLimit <= 0) {
+		self.currentTurn++;
+		if (self.currentTurn > self.turnLimit) {
 			[self.dieView setGameState:NO];
 			if ([self.gameOverAlert runModal] == NSAlertFirstButtonReturn) {
 				if ([self.savePanel runModal] == NSFileHandlingPanelOKButton) {
@@ -166,22 +186,10 @@
 					[str writeToURL:self.savePanel.URL atomically:YES encoding:NSUTF8StringEncoding error:nil];
 				}
 			}
+			[self enterState:TURN_ENDED];
+			[self.view.window setTitle:@"Farkle"];
 		}
 	}
-
-	self.accumulatedPoints = 0;
-	[self.bankButton setTitle:@"Bank"];
-
-	[self.selectionsTable reloadData];
-
-	initRoll(_roll);
-	[self enterState:FIRST_ROLL];
-
-	[self.view.window setTitle:[NSString stringWithFormat:@"%s's turn. Score: %d",
-								_players[_currentPlayer]->name,
-								_players[_currentPlayer]->score]];
-
-	[self.dieView setNeedsDisplay:YES];
 }
 
 - (void)enterState:(GameState)state {
