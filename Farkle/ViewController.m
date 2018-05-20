@@ -23,6 +23,7 @@
 
 #import "ViewController.h"
 
+#include <stdlib.h>
 #include "libfarkle.h"
 
 Roll* roll;
@@ -41,7 +42,13 @@ Player** players;
 
 - (void)startGame:(NSNotification *)notification {
 	int pCount = [notification.userInfo[@"PlayerCount"] intValue];
-	int turns = [notification.userInfo[@"TurnCount"] intValue];
+	self.turnLimit = [notification.userInfo[@"TurnCount"] intValue];
+	roll = (Roll*)malloc(sizeof(Roll));
+	players = (Player**)malloc(pCount * sizeof(Player*));
+	for (int i = 0; i < pCount; i++) {
+		players[i] = createPlayer("");
+	}
+	[self.dieView startGame];
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -65,12 +72,55 @@ Player** players;
 }
 
 - (IBAction)rollDice:(id)sender {
+	newRoll(roll);
+	NSMutableArray* array = [NSMutableArray arrayWithCapacity:6];
+	for (int i = 0; i < 6; i++) {
+		array[i] = @(roll->dice[i].value);
+	}
+	[self.dieView setDice:array];
+	Selection* sel = (Selection*)malloc(sizeof(Selection));
+	RollType type = determineRollType(roll, sel);
+	switch (type) {
+		case FARKLE:
+			printf("Farkle!\n");
+			emptyHand(players[self.currentPlayer]);
+			[self endTurn];
+			break;
+		case STRAIGHT:
+			printf("Straight!\n");
+		case TRIPLE_PAIR:
+			if (type != STRAIGHT) {
+				printf("Triple pair!\n");
+			}
+			printf("Selected %d worth of dice.\n", sel->value);
+			appendSelection(players[self.currentPlayer], sel);
+			state = ROLLING;
+			break;
+		default:
+			state = PICKING;
+			break;
+	}
 }
 
 - (IBAction)confirmSelection:(id)sender {
+	Selection* sel = (Selection*)malloc(sizeof(Selection));
+	if (constructSelection(roll, sel)) {
+		printf("Selected %d points' worth of dice.\n", sel->value);
+		state = ROLLING;
+		appendSelection(players[self.currentPlayer], sel);
+	} else {
+		printf("The selection is invalid\n");
+		deselectRoll(roll);
+	}
 }
 
 - (IBAction)bankPoints:(id)sender {
+	bankPoints(players[self.currentPlayer]);
+	[self endTurn];
+}
+
+- (void)endTurn {
+	self.currentPlayer++;
 }
 
 @end

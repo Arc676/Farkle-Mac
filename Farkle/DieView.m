@@ -25,7 +25,30 @@
 
 @implementation DieView
 
+- (instancetype)init {
+	self = [super init];
+	if (self) {
+		NSMutableArray* textures = [NSMutableArray arrayWithCapacity:6];
+		for (int i = 1; i <= 6; i++) {
+			textures[i - 1] = [NSImage imageNamed:[NSString stringWithFormat:@"%d.png", i]];
+		}
+		self.textures = [textures copy];
+		self.dice = @[@0, @0, @0, @0, @0, @0];
+		self.gameStarted = NO;
+	}
+	return self;
+}
+
+- (void)startGame {
+	self.gameStarted = YES;
+	[self setNeedsDisplay:YES];
+}
+
 - (void)drawRect:(NSRect)rect {
+	if (self.gameStarted) {
+	} else {
+		[@"No game in\nprogress" drawAtPoint:NSMakePoint(60, 100) withAttributes:nil];
+	}
 }
 
 @end

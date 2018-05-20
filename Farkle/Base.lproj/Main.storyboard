@@ -413,7 +413,7 @@
                                     <rect key="frame" x="1" y="0.0" width="213" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="Dd6-Om-FMI" id="KHM-2F-bMY">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="TyV-Ga-oZn" id="KHM-2F-bMY">
                                             <rect key="frame" x="0.0" y="0.0" width="213" height="111"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -445,11 +445,11 @@
                                     <rect key="frame" x="-7" y="8" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="AdE-WI-Oft">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="AdE-WI-Oft">
                                     <rect key="frame" x="-14" y="15" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="Dd6-Om-FMI">
+                                <tableHeaderView key="headerView" id="TyV-Ga-oZn">
                                     <rect key="frame" x="0.0" y="0.0" width="213" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
@@ -490,7 +490,10 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="bankButton" destination="NRP-2q-nw6" id="Bms-u1-vWG"/>
                         <outlet property="dieView" destination="t4P-zR-mfv" id="Wdg-Rr-kjl"/>
+                        <outlet property="rollButton" destination="IyU-4Q-8J7" id="TJK-6l-LlI"/>
+                        <outlet property="selectionButton" destination="NCp-uC-OmM" id="md4-Jh-gEv"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

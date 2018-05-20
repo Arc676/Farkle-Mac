@@ -25,4 +25,10 @@
 
 @interface DieView : NSView
 
+@property (assign) BOOL gameStarted;
+@property (strong) NSArray* dice;
+@property (strong) NSArray* textures;
+
+- (void) startGame;
+
 @end

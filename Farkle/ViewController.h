@@ -29,10 +29,15 @@
 @interface ViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
 
 @property (weak) IBOutlet DieView *dieView;
+@property (weak) IBOutlet NSButton *rollButton;
+@property (weak) IBOutlet NSButton *selectionButton;
+@property (weak) IBOutlet NSButton *bankButton;
 
 @property (assign) int currentPlayer;
+@property (assign) int turnLimit;
 
 - (void) startGame:(NSNotification*)notification;
+- (void) endTurn;
 
 - (IBAction)rollDice:(id)sender;
 - (IBAction)confirmSelection:(id)sender;
