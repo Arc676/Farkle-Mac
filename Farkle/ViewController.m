@@ -99,13 +99,8 @@
 			[self enterState:TURN_ENDED];
 			break;
 		case STRAIGHT:
-			printf("Straight!\n");
 		case TRIPLE_PAIR:
-			if (type != STRAIGHT) {
-				printf("Triple pair!\n");
-			}
-			printf("Selected %d worth of dice.\n", sel->value);
-			appendSelection(_players[_currentPlayer], sel);
+			[self updateSelectionValue:sel];
 			[self enterState:ROLLING];
 			break;
 		default:
@@ -118,14 +113,12 @@
 - (IBAction)confirmSelection:(id)sender {
 	Selection* sel = (Selection*)malloc(sizeof(Selection));
 	if (constructSelection(_roll, sel)) {
-		self.accumulatedPoints += sel->value;
-		[self.bankButton setTitle:[NSString stringWithFormat:@"Bank %d points", self.accumulatedPoints]];
 		[self enterState:ROLLING];
-		appendSelection(_players[_currentPlayer], sel);
-		[self.selectionsTable reloadData];
+		[self updateSelectionValue:sel];
 	} else {
 		[self.invalidSelectionAlert runModal];
 		deselectRoll(_roll);
+		[self.dieView setNeedsDisplay:YES];
 	}
 }
 
@@ -151,6 +144,13 @@
 	self.rollButton.enabled = state & ROLLING;
 	self.selectionButton.enabled = state == PICKING;
 	self.bankButton.enabled = state == ROLLING;
+}
+
+- (void)updateSelectionValue:(Selection *)sel {
+	self.accumulatedPoints += sel->value;
+	appendSelection(_players[_currentPlayer], sel);
+	[self.bankButton setTitle:[NSString stringWithFormat:@"Bank %d points", self.accumulatedPoints]];
+	[self.selectionsTable reloadData];
 }
 
 @end

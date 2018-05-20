@@ -48,6 +48,8 @@
 
 - (void) startGame:(NSNotification*)notification;
 - (void) enterState:(GameState)state;
+
+- (void) updateSelectionValue:(Selection*)sel;
 - (void) endTurn;
 
 - (IBAction)rollDice:(id)sender;
