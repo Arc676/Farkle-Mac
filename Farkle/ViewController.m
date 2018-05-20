@@ -71,13 +71,17 @@
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	if (_players) {
-		NSMutableArray* nums = [NSMutableArray arrayWithCapacity:6];
 		Selection* sel = _players[_currentPlayer]->hand->selections[row];
-		for (int i = 0; i < sel->dieCount; i++) {
-			NSNumber* num = [NSNumber numberWithInt:sel->values[i]];
-			[nums addObject:num];
+		if ([tableColumn.title isEqualToString:@"Selection"]) {
+			NSMutableArray* nums = [NSMutableArray arrayWithCapacity:6];
+			for (int i = 0; i < sel->dieCount; i++) {
+				NSNumber* num = [NSNumber numberWithInt:sel->values[i]];
+				[nums addObject:num];
+			}
+			return [nums componentsJoinedByString:@" "];
+		} else {
+			return [NSString stringWithFormat:@"%d", sel->value];
 		}
-		return [nums componentsJoinedByString:@" "];
 	}
 	return @"";
 }
