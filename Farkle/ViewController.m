@@ -31,8 +31,6 @@
 										   selector:@selector(startGame:)
 											   name:[NewGameController newGameNotifName]
 											 object:nil];
-	self.accumulatedPoints = 0;
-	self.currentTurn = 1;
 
 	self.invalidSelectionAlert = [[NSAlert alloc] init];
 	self.invalidSelectionAlert.messageText = @"Cannot select these dice";
@@ -67,6 +65,10 @@
 	// initialize new game data
 	self.pCount = [notification.userInfo[@"PlayerCount"] intValue];
 	self.turnLimit = [notification.userInfo[@"TurnCount"] intValue];
+
+	// reset game state
+	self.accumulatedPoints = 0;
+	self.currentTurn = 1;
 
 	_roll = (Roll*)malloc(sizeof(Roll));
 	initRoll(_roll);
@@ -160,14 +162,6 @@
 	initRoll(_roll);
 	[self enterState:FIRST_ROLL];
 
-	[self.view.window setTitle:[NSString stringWithFormat:@"%s's turn %d of %d. Score: %d",
-								_players[_currentPlayer]->name,
-								self.currentTurn,
-								self.turnLimit,
-								_players[_currentPlayer]->score]];
-
-	[self.dieView setNeedsDisplay:YES];
-
 	if (_currentPlayer == 0) {
 		self.currentTurn++;
 		if (self.currentTurn > self.turnLimit) {
@@ -188,8 +182,17 @@
 			}
 			[self enterState:TURN_ENDED];
 			[self.view.window setTitle:@"Farkle"];
+			return;
 		}
 	}
+
+	[self.view.window setTitle:[NSString stringWithFormat:@"%s's turn %d of %d. Score: %d",
+								_players[_currentPlayer]->name,
+								self.currentTurn,
+								self.turnLimit,
+								_players[_currentPlayer]->score]];
+
+	[self.dieView setNeedsDisplay:YES];
 }
 
 - (void)enterState:(GameState)state {
