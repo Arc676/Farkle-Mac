@@ -29,24 +29,26 @@
 @interface ViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
 
 @property (weak) IBOutlet NSTableView *selectionsTable;
+@property (weak) IBOutlet NSTableView *leaderboardTable;
+
 @property (weak) IBOutlet DieView *dieView;
 
 @property (weak) IBOutlet NSButton *rollButton;
 @property (weak) IBOutlet NSButton *selectionButton;
 @property (weak) IBOutlet NSButton *bankButton;
 
-@property (strong) NSAlert* invalidSelectionAlert;
-@property (strong) NSAlert* gameOverAlert;
-@property (strong) NSSavePanel* savePanel;
+@property (strong) NSAlert *invalidSelectionAlert;
+@property (strong) NSAlert *gameOverAlert;
+@property (strong) NSSavePanel *savePanel;
 
 @property (assign) int pCount;
 @property (assign) int currentPlayer;
 @property (assign) int accumulatedPoints;
 @property (assign) int turnLimit, currentTurn;
 
-@property (assign) Roll* roll;
+@property (assign) Roll *roll;
 @property (assign) GameState state;
-@property (assign) Player** players;
+@property (assign) Player **players, **leaderboard;
 
 - (void) startGame:(NSNotification*)notification;
 - (void) enterState:(GameState)state;

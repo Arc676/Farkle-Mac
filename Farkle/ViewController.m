@@ -43,6 +43,7 @@
 	[self.gameOverAlert addButtonWithTitle:@"Discard scores"];
 
 	self.savePanel = [NSSavePanel savePanel];
+	self.pCount = 0;
 
 	[self.dieView setVc:self];
 }
@@ -57,6 +58,7 @@
 			freePlayer(_players[i]);
 		}
 		free(_players);
+		free(_leaderboard);
 	}
 
 	// initialize new game data
@@ -71,43 +73,59 @@
 	initRoll(_roll);
 
 	_players = (Player**)malloc(self.pCount * sizeof(Player*));
+	_leaderboard = (Player**)malloc(self.pCount * sizeof(Player*));
 	for (int i = 0; i < self.pCount; i++) {
 		const char* name = [notification.userInfo[@"PlayerNames"][i] cStringUsingEncoding:NSUTF8StringEncoding];
 		char* heapName = (char*)malloc(strlen(name));
 		memcpy(heapName, name, strlen(name));
 		_players[i] = createPlayer(heapName);
+		_leaderboard[i] = _players[i];
 	}
 	[self.dieView setGameState:YES];
 	[self enterState:FIRST_ROLL];
 	[self.view.window setTitle:[NSString stringWithFormat:@"%s's turn 1 of %d. Score: 0",
 								_players[0]->name, self.turnLimit]];
+	[self.leaderboardTable reloadData];
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	if (_players) {
-		Selection* sel = _players[_currentPlayer]->hand->selections[row];
-		if (!sel) {
-			return @"";
-		}
-		if ([tableColumn.title isEqualToString:@"Selection"]) {
-			NSMutableArray* nums = [NSMutableArray arrayWithCapacity:6];
-			for (int i = 0; i < sel->dieCount; i++) {
-				NSNumber* num = [NSNumber numberWithInt:sel->values[i]];
-				[nums addObject:num];
+		if (tableView == self.leaderboardTable) {
+			Player* player = _leaderboard[row];
+			if ([tableColumn.title isEqualToString:@"Player Name"]) {
+				return [NSString stringWithCString:player->name encoding:NSUTF8StringEncoding];
+			} else {
+				return @(player->score);
 			}
-			return [nums componentsJoinedByString:@" "];
 		} else {
-			return [NSString stringWithFormat:@"%d", sel->value];
+			Selection* sel = _players[_currentPlayer]->hand->selections[row];
+			if (!sel) {
+				return @"";
+			}
+			if ([tableColumn.title isEqualToString:@"Selection"]) {
+				NSMutableArray* nums = [NSMutableArray arrayWithCapacity:6];
+				for (int i = 0; i < sel->dieCount; i++) {
+					NSNumber* num = [NSNumber numberWithInt:sel->values[i]];
+					[nums addObject:num];
+				}
+				return [nums componentsJoinedByString:@" "];
+			} else {
+				return [NSString stringWithFormat:@"%d", sel->value];
+			}
 		}
 	}
 	return @"";
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-	if (_players) {
-		return _players[_currentPlayer]->hand->timesSelected;
+	if (tableView == self.leaderboardTable) {
+		return self.pCount;
+	} else {
+		if (_players) {
+			return _players[_currentPlayer]->hand->timesSelected;
+		}
+		return 0;
 	}
-	return 0;
 }
 
 - (IBAction)rollDice:(id)sender {
@@ -178,6 +196,7 @@
 				}
 			}
 			[self enterState:TURN_ENDED];
+			[self.leaderboardTable reloadData];
 			[self.view.window setTitle:@"Farkle"];
 			return;
 		}
@@ -190,6 +209,9 @@
 								_players[_currentPlayer]->score]];
 
 	[self.dieView setNeedsDisplay:YES];
+
+	sortPlayers(_leaderboard, self.pCount);
+	[self.leaderboardTable reloadData];
 }
 
 - (void)enterState:(GameState)state {
