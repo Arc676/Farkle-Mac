@@ -603,27 +603,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="261" height="347"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cpl-py-Uhy">
-                                <rect key="frame" x="18" y="310" width="109" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cpl-py-Uhy">
+                                <rect key="frame" x="18" y="310" width="225" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Set up new game" id="iH1-6h-v5T">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RP3-0V-Stt">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RP3-0V-Stt">
                                 <rect key="frame" x="18" y="285" width="48" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Players" id="dnS-em-7cB">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QYa-zr-Ync">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QYa-zr-Ync">
                                 <rect key="frame" x="72" y="283" width="169" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="uHb-f6-LD2">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="PD0-9Y-vNy"/>
                                     <font key="font" metaFont="system"/>
@@ -634,18 +631,16 @@
                                     <action selector="changePlayerCount:" target="60P-Vr-tRW" id="fLC-JZ-tfg"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PkY-hM-BQ9">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PkY-hM-BQ9">
                                 <rect key="frame" x="18" y="258" width="70" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Turn count" id="qVs-2W-Vpq">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uTK-mG-q38">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uTK-mG-q38">
                                 <rect key="frame" x="94" y="256" width="147" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Fw0-BC-ZG5">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="cAt-YG-wak"/>
                                     <font key="font" metaFont="system"/>
@@ -653,9 +648,11 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w1s-y4-Zix">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w1s-y4-Zix">
                                 <rect key="frame" x="14" y="13" width="110" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="98" id="hkt-u7-wv3"/>
+                                </constraints>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PDg-VD-dVG">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -667,9 +664,11 @@ Gw
                                     <action selector="cancel:" target="60P-Vr-tRW" id="u3o-lL-G8g"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ifd-3a-BT9">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ifd-3a-BT9">
                                 <rect key="frame" x="137" y="13" width="110" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="98" id="9EK-56-U0F"/>
+                                </constraints>
                                 <buttonCell key="cell" type="push" title="Start Game" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zDo-l3-Eh5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -678,10 +677,9 @@ Gw
                                     <action selector="startGame:" target="60P-Vr-tRW" id="vhM-Jb-R2h"/>
                                 </connections>
                             </button>
-                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fw-7b-yIr">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fw-7b-yIr">
                                 <rect key="frame" x="20" y="53" width="221" height="195"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <clipView key="contentView" ambiguous="YES" id="Bs5-i1-vFO">
+                                <clipView key="contentView" id="Bs5-i1-vFO">
                                     <rect key="frame" x="1" y="0.0" width="219" height="194"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -727,6 +725,29 @@ Gw
                                 </tableHeaderView>
                             </scrollView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="0fw-7b-yIr" firstAttribute="trailing" secondItem="Ifd-3a-BT9" secondAttribute="trailing" id="3dn-Rc-MeR"/>
+                            <constraint firstItem="QYa-zr-Ync" firstAttribute="trailing" secondItem="uTK-mG-q38" secondAttribute="trailing" id="5tC-t9-Rev"/>
+                            <constraint firstItem="w1s-y4-Zix" firstAttribute="top" secondItem="0fw-7b-yIr" secondAttribute="bottom" constant="12" id="DgZ-0K-x2V"/>
+                            <constraint firstItem="0fw-7b-yIr" firstAttribute="leading" secondItem="w1s-y4-Zix" secondAttribute="leading" id="Dsm-tg-XZh"/>
+                            <constraint firstItem="cpl-py-Uhy" firstAttribute="top" secondItem="zC4-Lo-AJf" secondAttribute="top" constant="20" symbolic="YES" id="FvS-VL-7V3"/>
+                            <constraint firstAttribute="trailing" secondItem="QYa-zr-Ync" secondAttribute="trailing" constant="20" symbolic="YES" id="Gjt-0D-ZDf"/>
+                            <constraint firstItem="PkY-hM-BQ9" firstAttribute="top" secondItem="QYa-zr-Ync" secondAttribute="bottom" constant="8" symbolic="YES" id="HRP-ud-T2m"/>
+                            <constraint firstItem="RP3-0V-Stt" firstAttribute="centerY" secondItem="QYa-zr-Ync" secondAttribute="centerY" id="IPC-67-Fu9"/>
+                            <constraint firstItem="0fw-7b-yIr" firstAttribute="top" secondItem="uTK-mG-q38" secondAttribute="bottom" constant="8" symbolic="YES" id="IWL-q2-8Wh"/>
+                            <constraint firstAttribute="bottom" secondItem="w1s-y4-Zix" secondAttribute="bottom" constant="20" symbolic="YES" id="KTE-4K-L6N"/>
+                            <constraint firstItem="cpl-py-Uhy" firstAttribute="leading" secondItem="RP3-0V-Stt" secondAttribute="leading" id="M0r-22-ar9"/>
+                            <constraint firstItem="RP3-0V-Stt" firstAttribute="top" secondItem="cpl-py-Uhy" secondAttribute="bottom" constant="8" symbolic="YES" id="PFb-ku-Vsk"/>
+                            <constraint firstItem="w1s-y4-Zix" firstAttribute="baseline" secondItem="Ifd-3a-BT9" secondAttribute="baseline" id="ZUQ-og-eMf"/>
+                            <constraint firstItem="QYa-zr-Ync" firstAttribute="leading" secondItem="RP3-0V-Stt" secondAttribute="trailing" constant="8" symbolic="YES" id="e07-nB-Uxo"/>
+                            <constraint firstItem="Ifd-3a-BT9" firstAttribute="leading" secondItem="w1s-y4-Zix" secondAttribute="trailing" constant="25" id="kbt-ZH-baQ"/>
+                            <constraint firstItem="PkY-hM-BQ9" firstAttribute="leading" secondItem="0fw-7b-yIr" secondAttribute="leading" id="oAR-G1-14P"/>
+                            <constraint firstItem="RP3-0V-Stt" firstAttribute="leading" secondItem="PkY-hM-BQ9" secondAttribute="leading" id="qcn-mK-FqO"/>
+                            <constraint firstItem="uTK-mG-q38" firstAttribute="trailing" secondItem="0fw-7b-yIr" secondAttribute="trailing" id="sPd-8h-9nQ"/>
+                            <constraint firstItem="uTK-mG-q38" firstAttribute="leading" secondItem="PkY-hM-BQ9" secondAttribute="trailing" constant="8" symbolic="YES" id="urV-My-wak"/>
+                            <constraint firstItem="cpl-py-Uhy" firstAttribute="trailing" secondItem="QYa-zr-Ync" secondAttribute="trailing" id="w9v-7Q-lcy"/>
+                            <constraint firstItem="PkY-hM-BQ9" firstAttribute="centerY" secondItem="uTK-mG-q38" secondAttribute="centerY" id="wtg-FJ-bhd"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="nameTable" destination="Qq7-7k-khi" id="w15-iK-wta"/>
@@ -736,7 +757,7 @@ Gw
                 </viewController>
                 <customObject id="0Iz-Gw-xs8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="689.5" y="909.5"/>
+            <point key="canvasLocation" x="742.5" y="939.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="iU5-nU-38D">

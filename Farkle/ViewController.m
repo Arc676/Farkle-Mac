@@ -190,7 +190,7 @@
 					}
 					[str appendFormat:@"%@\n", [NSDate date]];
 					for (int i = 0; i < self.pCount; i++) {
-						[str appendFormat:@"%s - %d\n", _players[i]->name, _players[i]->score];
+						[str appendFormat:@"%s - %d\n", _leaderboard[i]->name, _leaderboard[i]->score];
 					}
 					[str writeToURL:self.savePanel.URL atomically:YES encoding:NSUTF8StringEncoding error:nil];
 				}
