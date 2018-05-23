@@ -54,10 +54,7 @@
 	}
 	if (_players) {
 		for (int i = 0; i < self.pCount; i++) {
-			free(_players[i]->name);
-			free(_players[i]->hand->selections);
-			free(_players[i]->hand);
-			free(_players[i]);
+			freePlayer(_players[i]);
 		}
 		free(_players);
 	}
