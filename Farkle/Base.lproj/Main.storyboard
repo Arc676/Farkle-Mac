@@ -402,14 +402,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t4P-zR-mfv" customClass="DieView">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="t4P-zR-mfv" customClass="DieView">
                                 <rect key="frame" x="20" y="20" width="217" height="230"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
-                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIr-Qd-2tB">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIr-Qd-2tB">
                                 <rect key="frame" x="245" y="20" width="215" height="135"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <clipView key="contentView" ambiguous="YES" id="EPq-uC-cyv">
+                                <clipView key="contentView" id="EPq-uC-cyv">
                                     <rect key="frame" x="1" y="0.0" width="213" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -467,9 +465,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IyU-4Q-8J7">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IyU-4Q-8J7">
                                 <rect key="frame" x="239" y="222" width="227" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="215" id="5db-2P-YhN"/>
+                                </constraints>
                                 <buttonCell key="cell" type="push" title="Roll" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5GO-7u-ZMx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -478,9 +478,8 @@
                                     <action selector="rollDice:" target="XfG-lQ-9wD" id="wLQ-hd-md1"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NCp-uC-OmM">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NCp-uC-OmM">
                                 <rect key="frame" x="239" y="189" width="227" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Confirm Selection" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3NB-6Y-Bcl">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -489,9 +488,8 @@
                                     <action selector="confirmSelection:" target="XfG-lQ-9wD" id="tnx-bd-gr6"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NRP-2q-nw6">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NRP-2q-nw6">
                                 <rect key="frame" x="239" y="156" width="227" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Bank" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gMg-dr-651">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -501,6 +499,24 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="NCp-uC-OmM" firstAttribute="trailing" secondItem="NRP-2q-nw6" secondAttribute="trailing" id="1Uv-Hd-L8Q"/>
+                            <constraint firstAttribute="trailing" secondItem="IyU-4Q-8J7" secondAttribute="trailing" constant="20" symbolic="YES" id="1cS-NW-OAb"/>
+                            <constraint firstAttribute="bottom" secondItem="t4P-zR-mfv" secondAttribute="bottom" constant="20" symbolic="YES" id="3FS-tX-eWe"/>
+                            <constraint firstItem="NRP-2q-nw6" firstAttribute="leading" secondItem="DIr-Qd-2tB" secondAttribute="leading" id="6cD-Xh-4ff"/>
+                            <constraint firstItem="t4P-zR-mfv" firstAttribute="top" secondItem="IyU-4Q-8J7" secondAttribute="top" id="9N7-67-pDL"/>
+                            <constraint firstItem="NRP-2q-nw6" firstAttribute="trailing" secondItem="DIr-Qd-2tB" secondAttribute="trailing" id="BHN-JY-bG7"/>
+                            <constraint firstItem="NRP-2q-nw6" firstAttribute="top" secondItem="NCp-uC-OmM" secondAttribute="bottom" constant="12" symbolic="YES" id="Bhd-fy-VdO"/>
+                            <constraint firstItem="t4P-zR-mfv" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="GVh-Il-dUD"/>
+                            <constraint firstItem="NCp-uC-OmM" firstAttribute="top" secondItem="IyU-4Q-8J7" secondAttribute="bottom" constant="12" symbolic="YES" id="NXG-a4-DUu"/>
+                            <constraint firstItem="t4P-zR-mfv" firstAttribute="bottom" secondItem="DIr-Qd-2tB" secondAttribute="bottom" id="PCz-cn-Vvd"/>
+                            <constraint firstItem="IyU-4Q-8J7" firstAttribute="leading" secondItem="t4P-zR-mfv" secondAttribute="trailing" constant="8" symbolic="YES" id="f86-b9-C2i"/>
+                            <constraint firstItem="t4P-zR-mfv" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="gA7-K7-GF1"/>
+                            <constraint firstItem="DIr-Qd-2tB" firstAttribute="top" secondItem="NRP-2q-nw6" secondAttribute="bottom" constant="8" id="kqV-01-t4N"/>
+                            <constraint firstItem="NCp-uC-OmM" firstAttribute="leading" secondItem="NRP-2q-nw6" secondAttribute="leading" id="lvL-zS-O09"/>
+                            <constraint firstItem="IyU-4Q-8J7" firstAttribute="trailing" secondItem="NCp-uC-OmM" secondAttribute="trailing" id="r1Q-1Q-fVd"/>
+                            <constraint firstItem="IyU-4Q-8J7" firstAttribute="leading" secondItem="NCp-uC-OmM" secondAttribute="leading" id="vMX-qH-NyT"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="bankButton" destination="NRP-2q-nw6" id="Bms-u1-vWG"/>
@@ -601,7 +617,7 @@ Gw
                                 <rect key="frame" x="20" y="53" width="221" height="195"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="Bs5-i1-vFO">
-                                    <rect key="frame" x="1" y="23" width="219" height="171"/>
+                                    <rect key="frame" x="1" y="0.0" width="219" height="194"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" headerView="LF9-ze-N5W" id="Qq7-7k-khi">
@@ -633,11 +649,11 @@ Gw
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Rzk-rc-myn">
-                                    <rect key="frame" x="1" y="179" width="219" height="15"/>
+                                    <rect key="frame" x="-7" y="8" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="72P-ha-PZ0">
-                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <rect key="frame" x="-14" y="15" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="LF9-ze-N5W">
