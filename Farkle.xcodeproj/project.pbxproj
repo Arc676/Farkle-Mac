@@ -24,6 +24,7 @@
 		710A268820AFE2FC00D0F0CB /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 710A268220AFE2FC00D0F0CB /* 5.png */; };
 		710A268920AFE2FC00D0F0CB /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 710A268320AFE2FC00D0F0CB /* 6.png */; };
 		710A268C20B10BC800D0F0CB /* NewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710A268B20B10BC800D0F0CB /* NewGameController.m */; };
+		7115753420C39D4B00AEC025 /* HighScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7115753320C39D4B00AEC025 /* HighScoreManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,8 @@
 		710A268320AFE2FC00D0F0CB /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
 		710A268A20B10BC800D0F0CB /* NewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewGameController.h; sourceTree = "<group>"; };
 		710A268B20B10BC800D0F0CB /* NewGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewGameController.m; sourceTree = "<group>"; };
+		7115753220C39D4B00AEC025 /* HighScoreManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HighScoreManager.h; sourceTree = "<group>"; };
+		7115753320C39D4B00AEC025 /* HighScoreManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HighScoreManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,8 @@
 				710A266520AFD1F900D0F0CB /* Info.plist */,
 				710A266620AFD1F900D0F0CB /* main.m */,
 				710A266820AFD1F900D0F0CB /* Farkle.entitlements */,
+				7115753220C39D4B00AEC025 /* HighScoreManager.h */,
+				7115753320C39D4B00AEC025 /* HighScoreManager.m */,
 			);
 			path = Farkle;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				710A265F20AFD1F500D0F0CB /* ViewController.m in Sources */,
 				710A267C20AFDD2800D0F0CB /* DieView.m in Sources */,
 				710A266720AFD1F900D0F0CB /* main.m in Sources */,
+				7115753420C39D4B00AEC025 /* HighScoreManager.m in Sources */,
 				710A265C20AFD1F500D0F0CB /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
