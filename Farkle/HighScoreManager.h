@@ -28,6 +28,13 @@
 @property (weak) IBOutlet NSTableView *entryTable;
 @property (weak) IBOutlet NSTableView *scoresTable;
 
+@property (strong) NSMutableDictionary *scores;
+@property (strong) NSArray *entries;
+@property (strong) NSDateFormatter *datefmt;
+
+@property (strong) NSAlert* confirmAlert;
+
 - (IBAction)deleteSelectedEntry:(id)sender;
+- (void) refreshScoreData;
 
 @end

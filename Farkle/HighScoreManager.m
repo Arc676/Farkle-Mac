@@ -25,6 +25,73 @@
 
 @implementation HighScoreManager
 
-- (IBAction)deleteSelectedEntry:(id)sender {
+- (void)awakeFromNib {
+	[super awakeFromNib];
+	NSDate *d1 = [NSDate dateWithTimeIntervalSince1970:1528000661];
+	NSDate *d2 = [NSDate dateWithTimeIntervalSince1970:1528000761];
+	NSDate *d3 = [NSDate dateWithTimeIntervalSince1970:1528000861];
+	self.scores = [@{ d1 : @{ @"Players" : @[ @"Bob", @"Alice" ], @"Scores" : @[ @100, @50 ] }, d2 : @{ @"Players" : @[ @"Sam", @"Tom" ], @"Scores" : @[ @125, @60 ] }, d3: @{ @"Players" : @[ @"Nigel", @"Jack" ], @"Scores" : @[ @1245, @1200 ]} } mutableCopy];
+	[self refreshScoreData];
+
+	self.datefmt = [[NSDateFormatter alloc] init];
+	self.datefmt.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+
+	self.confirmAlert = [[NSAlert alloc] init];
+	self.confirmAlert.messageText = @"Confirm deletion";
+	self.confirmAlert.informativeText = @"Are you sure you want to delete this entry? This cannot be undone.";
+	[self.confirmAlert addButtonWithTitle:@"Yes"];
+	[self.confirmAlert addButtonWithTitle:@"Cancel"];
 }
+
+- (void)refreshScoreData {
+	self.entries = [[self.scores allKeys] sortedArrayUsingComparator:^NSComparisonResult(NSDate *d1, NSDate  *d2) {
+		return [d2 compare:d1];
+	}];
+	[self.entryTable reloadData];
+	[self.scoresTable reloadData];
+}
+
+- (IBAction)deleteSelectedEntry:(id)sender {
+	NSInteger row = [self.entryTable selectedRow];
+	if (row != -1 && [self.confirmAlert runModal] == NSAlertFirstButtonReturn) {
+		[self.scores removeObjectForKey:self.entries[row]];
+		[self refreshScoreData];
+	}
+}
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification {
+	if (notification.object == self.entryTable) {
+		[self.scoresTable reloadData];
+	}
+}
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+	if (tableView == self.entryTable) {
+		return [self.scores count];
+	} else {
+		NSInteger row = [self.entryTable selectedRow];
+		if (row != -1) {
+			return [self.scores[self.entries[row]] count];
+		}
+		return 0;
+	}
+}
+
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+	if (tableView == self.entryTable) {
+		return [self.datefmt stringFromDate:self.entries[row]];
+	} else {
+		NSInteger entryRow = [self.entryTable selectedRow];
+		if (entryRow != -1) {
+			NSDictionary *gameScores = self.scores[self.entries[entryRow]];
+			if ([tableColumn.title isEqualToString:@"Score"]) {
+				return gameScores[@"Scores"][row];
+			} else {
+				return gameScores[@"Players"][row];
+			}
+		}
+		return @"";
+	}
+}
+
 @end
