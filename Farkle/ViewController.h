@@ -21,13 +21,13 @@
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //See README and LICENSE for more details
 
-#import <Cocoa/Cocoa.h>
+#import "GameMgr.h"
 
 #import "DieView.h"
 #import "NewGameController.h"
 #import "HighScoreManager.h"
 
-@interface ViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
+@interface ViewController : GameMgr <NSTableViewDelegate, NSTableViewDataSource>
 
 @property (weak) IBOutlet NSTableView *selectionsTable;
 @property (weak) IBOutlet NSTableView *leaderboardTable;
@@ -41,15 +41,6 @@
 @property (strong) NSAlert *invalidSelectionAlert;
 @property (strong) NSAlert *gameOverAlert;
 @property (strong) NSSavePanel *savePanel;
-
-@property (assign) int pCount;
-@property (assign) int currentPlayer;
-@property (assign) int accumulatedPoints;
-@property (assign) int turnLimit, currentTurn;
-
-@property (assign) Roll *roll;
-@property (assign) GameState state;
-@property (assign) Player **players, **leaderboard;
 
 - (void) startGame:(NSNotification*)notification;
 - (void) enterState:(GameState)state;

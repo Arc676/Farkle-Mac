@@ -25,6 +25,13 @@
 
 @implementation ViewController
 
+@synthesize roll=_roll;
+@synthesize players=_players;
+@synthesize state=_state;
+@synthesize leaderboard=_leaderboard;
+@synthesize currentTurn=_currentTurn;
+@synthesize currentPlayer=_currentPlayer;
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[NSNotificationCenter.defaultCenter addObserver:self

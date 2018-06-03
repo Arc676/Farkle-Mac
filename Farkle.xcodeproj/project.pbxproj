@@ -25,6 +25,7 @@
 		710A268920AFE2FC00D0F0CB /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 710A268320AFE2FC00D0F0CB /* 6.png */; };
 		710A268C20B10BC800D0F0CB /* NewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 710A268B20B10BC800D0F0CB /* NewGameController.m */; };
 		7115753420C39D4B00AEC025 /* HighScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7115753320C39D4B00AEC025 /* HighScoreManager.m */; };
+		7115753820C3CEAB00AEC025 /* GameMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 7115753720C3CEAB00AEC025 /* GameMgr.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,8 @@
 		710A268B20B10BC800D0F0CB /* NewGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewGameController.m; sourceTree = "<group>"; };
 		7115753220C39D4B00AEC025 /* HighScoreManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HighScoreManager.h; sourceTree = "<group>"; };
 		7115753320C39D4B00AEC025 /* HighScoreManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HighScoreManager.m; sourceTree = "<group>"; };
+		7115753620C3CEAB00AEC025 /* GameMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameMgr.h; sourceTree = "<group>"; };
+		7115753720C3CEAB00AEC025 /* GameMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameMgr.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,7 @@
 		710A264E20AFD1F500D0F0CB = {
 			isa = PBXGroup;
 			children = (
+				7115753520C3CE7600AEC025 /* Universal */,
 				710A267D20AFE2FC00D0F0CB /* Dice */,
 				710A267520AFD42E00D0F0CB /* lib */,
 				710A266E20AFD26200D0F0CB /* Meta */,
@@ -140,6 +144,15 @@
 				710A268320AFE2FC00D0F0CB /* 6.png */,
 			);
 			path = Dice;
+			sourceTree = "<group>";
+		};
+		7115753520C3CE7600AEC025 /* Universal */ = {
+			isa = PBXGroup;
+			children = (
+				7115753620C3CEAB00AEC025 /* GameMgr.h */,
+				7115753720C3CEAB00AEC025 /* GameMgr.m */,
+			);
+			path = Universal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				710A268C20B10BC800D0F0CB /* NewGameController.m in Sources */,
+				7115753820C3CEAB00AEC025 /* GameMgr.m in Sources */,
 				710A265F20AFD1F500D0F0CB /* ViewController.m in Sources */,
 				710A267C20AFDD2800D0F0CB /* DieView.m in Sources */,
 				710A266720AFD1F900D0F0CB /* main.m in Sources */,
