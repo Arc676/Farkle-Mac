@@ -25,8 +25,8 @@
 
 @implementation HighScoreManager
 
-- (void)awakeFromNib {
-	[super awakeFromNib];
+- (void)viewDidLoad {
+	[super viewDidLoad];
 	NSDictionary* existing = [NSKeyedUnarchiver
 							  unarchiveObjectWithData:
 							  [NSUserDefaults.standardUserDefaults objectForKey:@"HighScores"]];
@@ -38,7 +38,7 @@
 
 	self.confirmAlert = [[NSAlert alloc] init];
 	self.confirmAlert.messageText = @"Confirm deletion";
-	self.confirmAlert.informativeText = @"Are you sure you want to delete this entry? This cannot be undone.";
+	self.confirmAlert.informativeText = @"Are you sure you want to delete? This cannot be undone.";
 	[self.confirmAlert addButtonWithTitle:@"Yes"];
 	[self.confirmAlert addButtonWithTitle:@"Cancel"];
 
@@ -60,6 +60,15 @@
 	NSInteger row = [self.entryTable selectedRow];
 	if (row != -1 && [self.confirmAlert runModal] == NSAlertFirstButtonReturn) {
 		[self.scores removeObjectForKey:self.entries[row]];
+		[self saveScoresToDisk];
+		[self refreshScoreData];
+	}
+}
+
+- (IBAction)deleteAllEntries:(id)sender {
+	if ([self.confirmAlert runModal] == NSAlertFirstButtonReturn) {
+		[self.scores removeAllObjects];
+		[self saveScoresToDisk];
 		[self refreshScoreData];
 	}
 }
@@ -99,10 +108,14 @@
 	}
 }
 
-- (void)storeNewGame:(NSNotification *)notif {
-	self.scores[[NSDate date]] = notif.userInfo;
+- (void)saveScoresToDisk {
 	[NSUserDefaults.standardUserDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.scores]
 											forKey:@"HighScores"];
+}
+
+- (void)storeNewGame:(NSNotification *)notif {
+	self.scores[[NSDate date]] = notif.userInfo;
+	[self saveScoresToDisk];
 	[self refreshScoreData];
 }
 

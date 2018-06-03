@@ -177,6 +177,9 @@
 	initRoll(_roll);
 	[self enterState:FIRST_ROLL];
 
+	sortPlayers(_leaderboard, self.pCount);
+	[self.leaderboardTable reloadData];
+
 	if (_currentPlayer == 0) {
 		self.currentTurn++;
 		if (self.currentTurn > self.turnLimit) {
@@ -194,7 +197,6 @@
 															  object:self
 															userInfo:gameData];
 			[self enterState:TURN_ENDED];
-			[self.leaderboardTable reloadData];
 			[self.view.window setTitle:@"Farkle"];
 			return;
 		}
@@ -207,9 +209,6 @@
 								_players[_currentPlayer]->score]];
 
 	[self.dieView setNeedsDisplay:YES];
-
-	sortPlayers(_leaderboard, self.pCount);
-	[self.leaderboardTable reloadData];
 }
 
 - (void)enterState:(GameState)state {

@@ -129,12 +129,12 @@
 }
 
 - (void)mouseUp:(NSEvent *)event {
+	if (self.vc.state != PICKING) {
+		return;
+	}
 	if (self.hasFarkled) {
 		self.userFeedback = @"";
 		[self.vc endTurn];
-		return;
-	}
-	if (self.vc.state != PICKING) {
 		return;
 	}
 	int i = 0;

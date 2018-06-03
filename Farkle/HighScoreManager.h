@@ -37,8 +37,11 @@
 + (NSNotificationName) newGameNotifName;
 
 - (IBAction)deleteSelectedEntry:(id)sender;
+- (IBAction)deleteAllEntries:(id)sender;
 
 - (void) refreshScoreData;
+
+- (void) saveScoresToDisk;
 - (void) storeNewGame:(NSNotification*)notif;
 
 @end
