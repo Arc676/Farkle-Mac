@@ -181,20 +181,18 @@
 		self.currentTurn++;
 		if (self.currentTurn > self.turnLimit) {
 			[self.dieView setGameState:NO];
-			if ([self.gameOverAlert runModal] == NSAlertFirstButtonReturn) {
-				if ([self.savePanel runModal] == NSFileHandlingPanelOKButton) {
-					NSMutableString* str = [NSMutableString string];
-					if ([[NSFileManager defaultManager] fileExistsAtPath:self.savePanel.URL.absoluteString]) {
-						str = [NSMutableString stringWithContentsOfURL:self.savePanel.URL encoding:NSUTF8StringEncoding error:nil];
-						[str appendString:@"\n\n"];
-					}
-					[str appendFormat:@"%@\n", [NSDate date]];
-					for (int i = 0; i < self.pCount; i++) {
-						[str appendFormat:@"%s - %d\n", _leaderboard[i]->name, _leaderboard[i]->score];
-					}
-					[str writeToURL:self.savePanel.URL atomically:YES encoding:NSUTF8StringEncoding error:nil];
-				}
+
+			// store scores and player names
+			NSMutableArray *names = [NSMutableArray arrayWithCapacity:self.pCount];
+			NSMutableArray *scores = [NSMutableArray arrayWithCapacity:self.pCount];
+			for (int i = 0; i < self.pCount; i++) {
+				[names addObject:[NSString stringWithCString:_leaderboard[i]->name encoding:NSUTF8StringEncoding]];
+				[scores addObject:[NSNumber numberWithInteger:_leaderboard[i]->score]];
 			}
+			NSDictionary *gameData = @{ @"Players" : names, @"Scores" : scores };
+			[NSNotificationCenter.defaultCenter postNotificationName:[HighScoreManager newGameNotifName]
+															  object:self
+															userInfo:gameData];
 			[self enterState:TURN_ENDED];
 			[self.leaderboardTable reloadData];
 			[self.view.window setTitle:@"Farkle"];

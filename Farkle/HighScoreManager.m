@@ -27,10 +27,10 @@
 
 - (void)awakeFromNib {
 	[super awakeFromNib];
-	NSDate *d1 = [NSDate dateWithTimeIntervalSince1970:1528000661];
-	NSDate *d2 = [NSDate dateWithTimeIntervalSince1970:1528000761];
-	NSDate *d3 = [NSDate dateWithTimeIntervalSince1970:1528000861];
-	self.scores = [@{ d1 : @{ @"Players" : @[ @"Bob", @"Alice" ], @"Scores" : @[ @100, @50 ] }, d2 : @{ @"Players" : @[ @"Sam", @"Tom" ], @"Scores" : @[ @125, @60 ] }, d3: @{ @"Players" : @[ @"Nigel", @"Jack" ], @"Scores" : @[ @1245, @1200 ]} } mutableCopy];
+	NSDictionary* existing = [NSKeyedUnarchiver
+							  unarchiveObjectWithData:
+							  [NSUserDefaults.standardUserDefaults objectForKey:@"HighScores"]];
+	self.scores = existing ? [existing mutableCopy] : [NSMutableDictionary dictionary];
 	[self refreshScoreData];
 
 	self.datefmt = [[NSDateFormatter alloc] init];
@@ -41,6 +41,11 @@
 	self.confirmAlert.informativeText = @"Are you sure you want to delete this entry? This cannot be undone.";
 	[self.confirmAlert addButtonWithTitle:@"Yes"];
 	[self.confirmAlert addButtonWithTitle:@"Cancel"];
+
+	[NSNotificationCenter.defaultCenter addObserver:self
+										   selector:@selector(storeNewGame:)
+											   name:[HighScoreManager newGameNotifName]
+											 object:nil];
 }
 
 - (void)refreshScoreData {
@@ -71,7 +76,7 @@
 	} else {
 		NSInteger row = [self.entryTable selectedRow];
 		if (row != -1) {
-			return [self.scores[self.entries[row]] count];
+			return [self.scores[self.entries[row]][@"Players"] count];
 		}
 		return 0;
 	}
@@ -92,6 +97,17 @@
 		}
 		return @"";
 	}
+}
+
+- (void)storeNewGame:(NSNotification *)notif {
+	self.scores[[NSDate date]] = notif.userInfo;
+	[NSUserDefaults.standardUserDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.scores]
+											forKey:@"HighScores"];
+	[self refreshScoreData];
+}
+
++ (NSNotificationName)newGameNotifName {
+	return @"com.arc676.Farkle.storeNewScores";
 }
 
 @end

@@ -25,6 +25,7 @@
 
 #import "DieView.h"
 #import "NewGameController.h"
+#import "HighScoreManager.h"
 
 @interface ViewController : NSViewController <NSTableViewDelegate, NSTableViewDataSource>
 

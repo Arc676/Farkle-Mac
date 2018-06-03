@@ -34,7 +34,11 @@
 
 @property (strong) NSAlert* confirmAlert;
 
++ (NSNotificationName) newGameNotifName;
+
 - (IBAction)deleteSelectedEntry:(id)sender;
+
 - (void) refreshScoreData;
+- (void) storeNewGame:(NSNotification*)notif;
 
 @end
