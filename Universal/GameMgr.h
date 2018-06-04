@@ -43,4 +43,9 @@
 @property (assign) GameState state;
 @property (assign) Player **players, **leaderboard;
 
+- (void) initializeGame:(int)pCount turns:(int)turnLimit names:(NSArray*)names;
+- (void) setupNextTurn;
+- (NSDictionary*) generateGameData;
+- (void) updateSelectionValue:(Selection*)sel;
+
 @end

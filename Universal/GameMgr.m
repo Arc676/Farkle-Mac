@@ -25,4 +25,61 @@
 
 @implementation GameMgr
 
+- (void)initializeGame:(int)pCount turns:(int)turnLimit names:(NSArray *)names {
+	// free old memory if needed
+	if (_roll) {
+		free(_roll);
+	}
+	if (_players) {
+		for (int i = 0; i < self.pCount; i++) {
+			freePlayer(_players[i]);
+		}
+		free(_players);
+		free(_leaderboard);
+	}
+
+	// initialize new game data
+	self.pCount = pCount;
+	self.turnLimit = turnLimit;
+
+	// reset game state
+	self.accumulatedPoints = 0;
+	self.currentTurn = 1;
+
+	_roll = (Roll*)malloc(sizeof(Roll));
+	initRoll(_roll);
+
+	_players = (Player**)malloc(self.pCount * sizeof(Player*));
+	_leaderboard = (Player**)malloc(self.pCount * sizeof(Player*));
+	for (int i = 0; i < self.pCount; i++) {
+		const char* name = [names[i] cStringUsingEncoding:NSUTF8StringEncoding];
+		char* heapName = (char*)malloc(strlen(name));
+		memcpy(heapName, name, strlen(name));
+		_players[i] = createPlayer(heapName);
+		_leaderboard[i] = _players[i];
+	}
+}
+
+- (void)setupNextTurn {
+	_currentPlayer = (_currentPlayer + 1) % self.pCount;
+	self.accumulatedPoints = 0;
+	initRoll(_roll);
+	sortPlayers(_leaderboard, self.pCount);
+}
+
+- (NSDictionary *)generateGameData {
+	NSMutableArray *names = [NSMutableArray arrayWithCapacity:self.pCount];
+	NSMutableArray *scores = [NSMutableArray arrayWithCapacity:self.pCount];
+	for (int i = 0; i < self.pCount; i++) {
+		[names addObject:[NSString stringWithCString:_leaderboard[i]->name encoding:NSUTF8StringEncoding]];
+		[scores addObject:[NSNumber numberWithInteger:_leaderboard[i]->score]];
+	}
+	return @{ @"Players" : names, @"Scores" : scores };
+}
+
+- (void)updateSelectionValue:(Selection *)sel {
+	self.accumulatedPoints += sel->value;
+	appendSelection(_players[_currentPlayer], sel);
+}
+
 @end

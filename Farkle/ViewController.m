@@ -56,38 +56,10 @@
 }
 
 - (void)startGame:(NSNotification *)notification {
-	// free old memory if needed
-	if (_roll) {
-		free(_roll);
-	}
-	if (_players) {
-		for (int i = 0; i < self.pCount; i++) {
-			freePlayer(_players[i]);
-		}
-		free(_players);
-		free(_leaderboard);
-	}
+	[super initializeGame:[notification.userInfo[@"PlayerCount"] intValue]
+					turns:[notification.userInfo[@"PlayerCount"] intValue]
+					names:notification.userInfo[@"PlayerNames"]];
 
-	// initialize new game data
-	self.pCount = [notification.userInfo[@"PlayerCount"] intValue];
-	self.turnLimit = [notification.userInfo[@"TurnCount"] intValue];
-
-	// reset game state
-	self.accumulatedPoints = 0;
-	self.currentTurn = 1;
-
-	_roll = (Roll*)malloc(sizeof(Roll));
-	initRoll(_roll);
-
-	_players = (Player**)malloc(self.pCount * sizeof(Player*));
-	_leaderboard = (Player**)malloc(self.pCount * sizeof(Player*));
-	for (int i = 0; i < self.pCount; i++) {
-		const char* name = [notification.userInfo[@"PlayerNames"][i] cStringUsingEncoding:NSUTF8StringEncoding];
-		char* heapName = (char*)malloc(strlen(name));
-		memcpy(heapName, name, strlen(name));
-		_players[i] = createPlayer(heapName);
-		_leaderboard[i] = _players[i];
-	}
 	[self.dieView setGameState:YES];
 	[self enterState:FIRST_ROLL];
 	[self.view.window setTitle:[NSString stringWithFormat:@"%s's turn 1 of %d. Score: 0",
@@ -174,17 +146,9 @@
 }
 
 - (void)endTurn {
-	_currentPlayer = (_currentPlayer + 1) % self.pCount;
-
-	self.accumulatedPoints = 0;
 	[self.bankButton setTitle:@"Bank"];
-
-	[self.selectionsTable reloadData];
-
-	initRoll(_roll);
 	[self enterState:FIRST_ROLL];
-
-	sortPlayers(_leaderboard, self.pCount);
+	[self.selectionsTable reloadData];
 	[self.leaderboardTable reloadData];
 
 	if (_currentPlayer == 0) {
@@ -192,17 +156,9 @@
 		if (self.currentTurn > self.turnLimit) {
 			[self.dieView setGameState:NO];
 
-			// store scores and player names
-			NSMutableArray *names = [NSMutableArray arrayWithCapacity:self.pCount];
-			NSMutableArray *scores = [NSMutableArray arrayWithCapacity:self.pCount];
-			for (int i = 0; i < self.pCount; i++) {
-				[names addObject:[NSString stringWithCString:_leaderboard[i]->name encoding:NSUTF8StringEncoding]];
-				[scores addObject:[NSNumber numberWithInteger:_leaderboard[i]->score]];
-			}
-			NSDictionary *gameData = @{ @"Players" : names, @"Scores" : scores };
 			[NSNotificationCenter.defaultCenter postNotificationName:[HighScoreManager newGameNotifName]
 															  object:self
-															userInfo:gameData];
+															userInfo:[super generateGameData]];
 			[self enterState:TURN_ENDED];
 			[self.view.window setTitle:@"Farkle"];
 			return;
@@ -226,8 +182,7 @@
 }
 
 - (void)updateSelectionValue:(Selection *)sel {
-	self.accumulatedPoints += sel->value;
-	appendSelection(_players[_currentPlayer], sel);
+	[super updateSelectionValue:sel];
 	[self.bankButton setTitle:[NSString stringWithFormat:@"Bank %d points", self.accumulatedPoints]];
 	[self.selectionsTable reloadData];
 }
