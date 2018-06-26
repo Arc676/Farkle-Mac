@@ -25,13 +25,6 @@
 
 @implementation ViewController
 
-@synthesize roll=_roll;
-@synthesize players=_players;
-@synthesize state=_state;
-@synthesize leaderboard=_leaderboard;
-@synthesize currentTurn=_currentTurn;
-@synthesize currentPlayer=_currentPlayer;
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[NSNotificationCenter.defaultCenter addObserver:self
@@ -57,27 +50,27 @@
 
 - (void)startGame:(NSNotification *)notification {
 	[super initializeGame:[notification.userInfo[@"PlayerCount"] intValue]
-					turns:[notification.userInfo[@"PlayerCount"] intValue]
+					turns:[notification.userInfo[@"TurnCount"] intValue]
 					names:notification.userInfo[@"PlayerNames"]];
 
 	[self.dieView setGameState:YES];
 	[self enterState:FIRST_ROLL];
 	[self.view.window setTitle:[NSString stringWithFormat:@"%s's turn 1 of %d. Score: 0",
-								_players[0]->name, self.turnLimit]];
+								self.players[0]->name, self.turnLimit]];
 	[self.leaderboardTable reloadData];
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-	if (_players) {
+	if (self.players) {
 		if (tableView == self.leaderboardTable) {
-			Player* player = _leaderboard[row];
+			Player* player = self.leaderboard[row];
 			if ([tableColumn.title isEqualToString:@"Player Name"]) {
 				return [NSString stringWithCString:player->name encoding:NSUTF8StringEncoding];
 			} else {
 				return @(player->score);
 			}
 		} else {
-			Selection* sel = _players[_currentPlayer]->hand->selections[row];
+			Selection* sel = self.players[self.currentPlayer]->hand->selections[row];
 			if (!sel) {
 				return @"";
 			}
@@ -100,20 +93,20 @@
 	if (tableView == self.leaderboardTable) {
 		return self.pCount;
 	} else {
-		if (_players) {
-			return _players[_currentPlayer]->hand->timesSelected;
+		if (self.players) {
+			return self.players[self.currentPlayer]->hand->timesSelected;
 		}
 		return 0;
 	}
 }
 
 - (IBAction)rollDice:(id)sender {
-	newRoll(_roll);
+	newRoll(self.roll);
 	Selection* sel = (Selection*)malloc(sizeof(Selection));
-	RollType type = determineRollType(_roll, sel);
+	RollType type = determineRollType(self.roll, sel);
 	switch (type) {
 		case FARKLE:
-			emptyHand(_players[_currentPlayer]);
+			emptyHand(self.players[self.currentPlayer]);
 			[self enterState:TURN_ENDED];
 			break;
 		case STRAIGHT:
@@ -130,18 +123,18 @@
 
 - (IBAction)confirmSelection:(id)sender {
 	Selection* sel = (Selection*)malloc(sizeof(Selection));
-	if (constructSelection(_roll, sel)) {
+	if (constructSelection(self.roll, sel)) {
 		[self enterState:ROLLING];
 		[self updateSelectionValue:sel];
 	} else {
 		[self.invalidSelectionAlert runModal];
-		deselectRoll(_roll);
+		deselectRoll(self.roll);
 		[self.dieView setNeedsDisplay:YES];
 	}
 }
 
 - (IBAction)bankPoints:(id)sender {
-	bankPoints(_players[_currentPlayer]);
+	bankPoints(self.players[self.currentPlayer]);
 	[self endTurn];
 }
 
@@ -151,7 +144,9 @@
 	[self.selectionsTable reloadData];
 	[self.leaderboardTable reloadData];
 
-	if (_currentPlayer == 0) {
+	[self setupNextTurn];
+
+	if (self.currentPlayer == 0) {
 		self.currentTurn++;
 		if (self.currentTurn > self.turnLimit) {
 			[self.dieView setGameState:NO];
@@ -166,16 +161,16 @@
 	}
 
 	[self.view.window setTitle:[NSString stringWithFormat:@"%s's turn %d of %d. Score: %d",
-								_players[_currentPlayer]->name,
+								self.players[self.currentPlayer]->name,
 								self.currentTurn,
 								self.turnLimit,
-								_players[_currentPlayer]->score]];
+								self.players[self.currentPlayer]->score]];
 
 	[self.dieView setNeedsDisplay:YES];
 }
 
 - (void)enterState:(GameState)state {
-	_state = state;
+	self.state = state;
 	self.rollButton.enabled = state & ROLLING;
 	self.selectionButton.enabled = state == PICKING;
 	self.bankButton.enabled = state == ROLLING;

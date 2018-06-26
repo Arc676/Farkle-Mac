@@ -479,6 +479,7 @@
                                 <buttonCell key="cell" type="push" title="Roll" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5GO-7u-ZMx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">r</string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="rollDice:" target="XfG-lQ-9wD" id="wLQ-hd-md1"/>
@@ -489,6 +490,7 @@
                                 <buttonCell key="cell" type="push" title="Confirm Selection" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3NB-6Y-Bcl">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">s</string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="confirmSelection:" target="XfG-lQ-9wD" id="tnx-bd-gr6"/>
@@ -499,6 +501,7 @@
                                 <buttonCell key="cell" type="push" title="Bank" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gMg-dr-651">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">b</string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="bankPoints:" target="XfG-lQ-9wD" id="v9d-jp-VNb"/>
@@ -851,11 +854,11 @@ Gw
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="sHw-DE-JdK">
-                                    <rect key="frame" x="1" y="179" width="208" height="15"/>
+                                    <rect key="frame" x="-7" y="8" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="MQi-nM-5Od">
-                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <rect key="frame" x="-14" y="15" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="Blc-SK-2SA">
@@ -867,7 +870,7 @@ Gw
                                 <rect key="frame" x="250" y="93" width="210" height="157"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="af9-vW-LS3">
-                                    <rect key="frame" x="1" y="23" width="208" height="133"/>
+                                    <rect key="frame" x="1" y="0.0" width="208" height="156"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="xVr-up-AXx" id="Osb-dd-2gC">
@@ -912,11 +915,11 @@ Gw
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="0Vb-L0-cOq">
-                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <rect key="frame" x="-7" y="8" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="jP8-q4-7Jk">
-                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <rect key="frame" x="-14" y="15" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="xVr-up-AXx">
