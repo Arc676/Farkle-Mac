@@ -27,6 +27,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
 	srand((unsigned int)time(NULL));
+	[HighScoreManager initializeScores];
 }
 
 @end

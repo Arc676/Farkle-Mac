@@ -22,6 +22,7 @@
 //See README and LICENSE for more details
 
 #import <Cocoa/Cocoa.h>
+#import "HighScoreManager.h"
 
 #include <stdlib.h>
 #include <time.h>

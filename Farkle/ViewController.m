@@ -151,9 +151,8 @@
 		if (self.currentTurn > self.turnLimit) {
 			[self.dieView setGameState:NO];
 
-			[NSNotificationCenter.defaultCenter postNotificationName:[HighScoreManager newGameNotifName]
-															  object:self
-															userInfo:[super generateGameData]];
+			[HighScoreManager addNewScore:[super generateGameData]];
+			
 			[self enterState:TURN_ENDED];
 			[self.view.window setTitle:@"Farkle"];
 			return;

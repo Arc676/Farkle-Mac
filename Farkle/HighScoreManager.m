@@ -25,12 +25,33 @@
 
 @implementation HighScoreManager
 
-- (void)viewDidLoad {
-	[super viewDidLoad];
+HighScoreManager* HSMinstance;
+NSMutableDictionary *scores;
+
++ (void)initializeScores {
 	NSDictionary* existing = [NSKeyedUnarchiver
 							  unarchiveObjectWithData:
 							  [NSUserDefaults.standardUserDefaults objectForKey:@"HighScores"]];
-	self.scores = existing ? [existing mutableCopy] : [NSMutableDictionary dictionary];
+	scores = existing ? [existing mutableCopy] : [NSMutableDictionary dictionary];
+}
+
++ (void)addNewScore:(NSDictionary *)scoreData {
+	scores[[NSDate date]] = scoreData;
+	[HighScoreManager saveScoresToDisk];
+	if (HSMinstance) {
+		[HSMinstance refreshScoreData];
+	}
+}
+
++ (void)saveScoresToDisk {
+	[NSUserDefaults.standardUserDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:scores]
+											forKey:@"HighScores"];
+}
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	HSMinstance = self;
+
 	[self refreshScoreData];
 
 	self.datefmt = [[NSDateFormatter alloc] init];
@@ -41,15 +62,10 @@
 	self.confirmAlert.informativeText = @"Are you sure you want to delete? This cannot be undone.";
 	[self.confirmAlert addButtonWithTitle:@"Yes"];
 	[self.confirmAlert addButtonWithTitle:@"Cancel"];
-
-	[NSNotificationCenter.defaultCenter addObserver:self
-										   selector:@selector(storeNewGame:)
-											   name:[HighScoreManager newGameNotifName]
-											 object:nil];
 }
 
 - (void)refreshScoreData {
-	self.entries = [[self.scores allKeys] sortedArrayUsingComparator:^NSComparisonResult(NSDate *d1, NSDate  *d2) {
+	self.entries = [[scores allKeys] sortedArrayUsingComparator:^NSComparisonResult(NSDate *d1, NSDate *d2) {
 		return [d2 compare:d1];
 	}];
 	[self.entryTable reloadData];
@@ -59,16 +75,16 @@
 - (IBAction)deleteSelectedEntry:(id)sender {
 	NSInteger row = [self.entryTable selectedRow];
 	if (row != -1 && [self.confirmAlert runModal] == NSAlertFirstButtonReturn) {
-		[self.scores removeObjectForKey:self.entries[row]];
-		[self saveScoresToDisk];
+		[scores removeObjectForKey:self.entries[row]];
+		[HighScoreManager saveScoresToDisk];
 		[self refreshScoreData];
 	}
 }
 
 - (IBAction)deleteAllEntries:(id)sender {
 	if ([self.confirmAlert runModal] == NSAlertFirstButtonReturn) {
-		[self.scores removeAllObjects];
-		[self saveScoresToDisk];
+		[scores removeAllObjects];
+		[HighScoreManager saveScoresToDisk];
 		[self refreshScoreData];
 	}
 }
@@ -81,11 +97,11 @@
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
 	if (tableView == self.entryTable) {
-		return [self.scores count];
+		return [scores count];
 	} else {
 		NSInteger row = [self.entryTable selectedRow];
 		if (row != -1) {
-			return [self.scores[self.entries[row]][@"Players"] count];
+			return [scores[self.entries[row]][@"Players"] count];
 		}
 		return 0;
 	}
@@ -97,7 +113,7 @@
 	} else {
 		NSInteger entryRow = [self.entryTable selectedRow];
 		if (entryRow != -1) {
-			NSDictionary *gameScores = self.scores[self.entries[entryRow]];
+			NSDictionary *gameScores = scores[self.entries[entryRow]];
 			if ([tableColumn.title isEqualToString:@"Score"]) {
 				return gameScores[@"Scores"][row];
 			} else {
@@ -106,21 +122,6 @@
 		}
 		return @"";
 	}
-}
-
-- (void)saveScoresToDisk {
-	[NSUserDefaults.standardUserDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.scores]
-											forKey:@"HighScores"];
-}
-
-- (void)storeNewGame:(NSNotification *)notif {
-	self.scores[[NSDate date]] = notif.userInfo;
-	[self saveScoresToDisk];
-	[self refreshScoreData];
-}
-
-+ (NSNotificationName)newGameNotifName {
-	return @"com.arc676.Farkle.storeNewScores";
 }
 
 @end

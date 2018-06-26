@@ -28,20 +28,18 @@
 @property (weak) IBOutlet NSTableView *entryTable;
 @property (weak) IBOutlet NSTableView *scoresTable;
 
-@property (strong) NSMutableDictionary *scores;
 @property (strong) NSArray *entries;
 @property (strong) NSDateFormatter *datefmt;
 
-@property (strong) NSAlert* confirmAlert;
+@property (strong) NSAlert *confirmAlert;
 
-+ (NSNotificationName) newGameNotifName;
++ (void) initializeScores;
++ (void) addNewScore:(NSDictionary*)scoreData;
++ (void) saveScoresToDisk;
 
 - (IBAction)deleteSelectedEntry:(id)sender;
 - (IBAction)deleteAllEntries:(id)sender;
 
 - (void) refreshScoreData;
-
-- (void) saveScoresToDisk;
-- (void) storeNewGame:(NSNotification*)notif;
 
 @end
