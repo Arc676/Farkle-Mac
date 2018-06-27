@@ -74,7 +74,7 @@
 		[names addObject:[NSString stringWithCString:_leaderboard[i]->name encoding:NSUTF8StringEncoding]];
 		[scores addObject:[NSNumber numberWithInteger:_leaderboard[i]->score]];
 	}
-	return @{ @"Players" : names, @"Scores" : scores };
+	return @{ @"Players" : names, @"Scores" : scores, @"Turns": @(self.turnLimit) };
 }
 
 - (void)updateSelectionValue:(Selection *)sel {

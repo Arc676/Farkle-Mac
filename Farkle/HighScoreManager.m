@@ -109,7 +109,11 @@ NSMutableDictionary *scores;
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	if (tableView == self.entryTable) {
-		return [self.datefmt stringFromDate:self.entries[row]];
+		if ([tableColumn.title isEqualToString:@"Date"]) {
+			return [self.datefmt stringFromDate:self.entries[row]];
+		} else {
+			return scores[self.entries[row]][@"Turns"];
+		}
 	} else {
 		NSInteger entryRow = [self.entryTable selectedRow];
 		if (entryRow != -1) {
