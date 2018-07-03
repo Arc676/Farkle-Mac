@@ -64,8 +64,7 @@
                                                 <segue destination="13t-iN-Tgd" kind="show" id="tgm-M0-rx5"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show High Scores" id="f5I-nV-8FP">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Show High Scores" keyEquivalent="s" id="f5I-nV-8FP">
                                             <connections>
                                                 <segue destination="tuH-4J-Tw5" kind="show" id="1Q3-pL-WLC"/>
                                             </connections>
@@ -815,18 +814,18 @@ Gw
             <objects>
                 <viewController id="s0b-h0-xxL" customClass="HighScoreManager" sceneMemberID="viewController">
                     <view key="view" id="Zqk-Ce-J9N">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="503" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dH0-yU-JXx">
-                                <rect key="frame" x="20" y="93" width="210" height="157"/>
+                                <rect key="frame" x="20" y="93" width="245" height="157"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="lI5-rW-daG">
-                                    <rect key="frame" x="1" y="0.0" width="208" height="156"/>
+                                    <rect key="frame" x="1" y="0.0" width="243" height="156"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="Blc-SK-2SA" id="tme-7L-JdZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="208" height="133"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" headerView="Blc-SK-2SA" id="tme-7L-JdZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="243" height="133"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -845,7 +844,7 @@ Gw
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="61" minWidth="10" maxWidth="3.4028234663852886e+38" id="LR5-Gd-wBX">
+                                                <tableColumn identifier="" width="99" minWidth="10" maxWidth="3.4028234663852886e+38" id="LR5-Gd-wBX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Turns">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -867,7 +866,7 @@ Gw
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="sHw-DE-JdK">
-                                    <rect key="frame" x="1" y="141" width="208" height="15"/>
+                                    <rect key="frame" x="-7" y="8" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="MQi-nM-5Od">
@@ -875,18 +874,40 @@ Gw
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="Blc-SK-2SA">
-                                    <rect key="frame" x="0.0" y="0.0" width="208" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="243" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HZe-wo-L1P">
+                                <rect key="frame" x="14" y="46" width="475" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Delete Entry" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g49-NF-9zs">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteSelectedEntry:" target="s0b-h0-xxL" id="LL9-vx-e4u"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZG-vy-e8z">
+                                <rect key="frame" x="14" y="13" width="475" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Delete All Entries" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="N4I-vR-B7a">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteAllEntries:" target="s0b-h0-xxL" id="2Ln-E7-uVb"/>
+                                </connections>
+                            </button>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HL7-5O-2VY">
-                                <rect key="frame" x="250" y="93" width="210" height="157"/>
+                                <rect key="frame" x="273" y="93" width="210" height="157"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="af9-vW-LS3">
                                     <rect key="frame" x="1" y="0.0" width="208" height="156"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="xVr-up-AXx" id="Osb-dd-2gC">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="xVr-up-AXx" id="Osb-dd-2gC">
                                             <rect key="frame" x="0.0" y="0.0" width="208" height="133"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -940,28 +961,6 @@ Gw
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HZe-wo-L1P">
-                                <rect key="frame" x="14" y="46" width="452" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Delete Entry" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g49-NF-9zs">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="deleteSelectedEntry:" target="s0b-h0-xxL" id="LL9-vx-e4u"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZG-vy-e8z">
-                                <rect key="frame" x="14" y="13" width="452" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Delete All Entries" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="N4I-vR-B7a">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="deleteAllEntries:" target="s0b-h0-xxL" id="2Ln-E7-uVb"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -971,7 +970,7 @@ Gw
                 </viewController>
                 <customObject id="M5c-BE-qSQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1365" y="987"/>
+            <point key="canvasLocation" x="1376.5" y="987"/>
         </scene>
     </scenes>
 </document>

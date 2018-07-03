@@ -30,6 +30,10 @@
 	return YES;
 }
 
+- (BOOL)acceptsFirstResponder {
+	return YES;
+}
+
 - (void)awakeFromNib {
 	NSMutableArray* textures = [NSMutableArray arrayWithCapacity:6];
 	for (int i = 1; i <= 6; i++) {
@@ -38,10 +42,10 @@
 	self.textures = [textures copy];
 	self.points = @[
 					@"30 147",
-					@"130 147",
 					@"30 81",
-					@"130 81",
 					@"30 15",
+					@"130 147",
+					@"130 81",
 					@"130 15"
 					];
 	NSMutableArray* array = [NSMutableArray arrayWithCapacity:6];
@@ -65,7 +69,7 @@
 
 - (void)drawRect:(NSRect)rect {
 	if (self.gameStarted) {
-		[self.userFeedback drawAtPoint:NSMakePoint(20, 190) withAttributes:nil];
+		[self.userFeedback drawAtPoint:NSMakePoint(20, 200) withAttributes:nil];
 		for (int i = 0; i < 6; i++) {
 			Die die = self.vc.roll->dice[i];
 			if (die.value != 0) {
@@ -105,7 +109,7 @@
 	determinePickableDice(self.vc.roll, values, pickableDice);
 	switch (type) {
 		case FARKLE:
-			self.userFeedback = @"Farkle! Click on the board\nto pass turn.";
+			self.userFeedback = @"Farkle! Click on the board or\npress space to pass the turn.";
 			self.hasFarkled = YES;
 			break;
 		case STRAIGHT:
@@ -146,6 +150,19 @@
 			return;
 		}
 		i++;
+	}
+}
+
+- (void)keyUp:(NSEvent *)event {
+	if (self.vc.state == PICKING) {
+		int i = [event.characters intValue];
+		if (i >= 1 && i <= 6) {
+			toggleDie(self.vc.roll, i - 1);
+			[self setNeedsDisplay:YES];
+		}
+	} else if (self.hasFarkled && event.keyCode == 49) {
+		self.userFeedback = @"";
+		[self.vc endTurn];
 	}
 }
 
