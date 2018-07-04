@@ -358,9 +358,10 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="Farkle Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="How to Play" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
+                                                <segue destination="JXz-7b-BuA" kind="show" id="Ehb-h3-4ju"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -680,6 +681,9 @@ Gw
                                 <buttonCell key="cell" type="push" title="Start Game" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zDo-l3-Eh5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="startGame:" target="60P-Vr-tRW" id="vhM-Jb-R2h"/>
@@ -808,6 +812,116 @@ Gw
                 <customObject id="Gsq-bU-oMF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1354" y="442"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="3iA-BS-OHN">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="JXz-7b-BuA" sceneMemberID="viewController">
+                    <window key="window" title="How to play Farkle" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="l0y-d5-5S4">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="JXz-7b-BuA" id="1Rt-Ee-H3f"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="ol2-7Y-SqD" kind="relationship" relationship="window.shadowedContentViewController" id="wDA-tM-dYx"/>
+                    </connections>
+                </windowController>
+                <customObject id="56F-Xz-EBP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1529" y="-108"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="UeP-l8-sZG">
+            <objects>
+                <viewController id="ol2-7Y-SqD" sceneMemberID="viewController">
+                    <view key="view" id="hZR-ez-mFp">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="486"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pev-Gb-Poh">
+                                <rect key="frame" x="20" y="20" width="440" height="446"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <clipView key="contentView" ambiguous="YES" id="EuR-c3-ahL">
+                                    <rect key="frame" x="1" y="1" width="423" height="444"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView ambiguous="YES" editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsCharacterPickerTouchBarItem="NO" usesRuler="YES" allowsNonContiguousLayout="YES" textCompletion="NO" id="ygu-zt-Zfl">
+                                            <rect key="frame" x="0.0" y="0.0" width="423" height="444"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="423" height="444"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <attributedString key="textStorage">
+                                                <fragment>
+                                                    <string key="content">How to play Farkle
+
+Gameplay
+
+The rules are described in the README of the library's repository.
+https://github.com/Arc676/Farkle#gameplay
+
+Controls
+
+</string>
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="system" size="14"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="⌘">
+                                                    <attributes>
+                                                        <font key="NSFont" size="14" name=".LucidaGrandeUI"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="N starts a new game. ">
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="system" size="14"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment content="⌘">
+                                                    <attributes>
+                                                        <font key="NSFont" size="14" name=".LucidaGrandeUI"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                                <fragment>
+                                                    <mutableString key="content">S shows the scores of previous games, sorted by date, with the scores of players in descending order.
+
+When playing, R, S, and B are shortcuts for rolling, confirming selection, and banking, respectively.
+
+When selecting, the numbers 1-6 can be used to select dice. 1-3 correspond to the first column of dice going down, while 4-6 correspond to the second column of dice going down. This allows toggling of die selection using the keyboard.</mutableString>
+                                                    <attributes>
+                                                        <font key="NSFont" metaFont="system" size="14"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="zJa-Ye-1GS">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="9BJ-H6-Zwy">
+                                    <rect key="frame" x="424" y="1" width="15" height="444"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="LU0-tH-NWY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2236" y="-25"/>
         </scene>
         <!--High Score Manager-->
         <scene sceneID="ZBJ-Wx-9E6">

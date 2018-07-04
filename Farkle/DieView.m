@@ -138,6 +138,7 @@
 	}
 	if (self.hasFarkled) {
 		self.userFeedback = @"";
+		self.hasFarkled = NO;
 		[self.vc endTurn];
 		return;
 	}

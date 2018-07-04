@@ -103,13 +103,13 @@
 				710A267B20AFDD2800D0F0CB /* DieView.m */,
 				710A268A20B10BC800D0F0CB /* NewGameController.h */,
 				710A268B20B10BC800D0F0CB /* NewGameController.m */,
+				7115753220C39D4B00AEC025 /* HighScoreManager.h */,
+				7115753320C39D4B00AEC025 /* HighScoreManager.m */,
 				710A266020AFD1F900D0F0CB /* Assets.xcassets */,
 				710A266220AFD1F900D0F0CB /* Main.storyboard */,
 				710A266520AFD1F900D0F0CB /* Info.plist */,
 				710A266620AFD1F900D0F0CB /* main.m */,
 				710A266820AFD1F900D0F0CB /* Farkle.entitlements */,
-				7115753220C39D4B00AEC025 /* HighScoreManager.h */,
-				7115753320C39D4B00AEC025 /* HighScoreManager.m */,
 			);
 			path = Farkle;
 			sourceTree = "<group>";
