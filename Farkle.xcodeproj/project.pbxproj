@@ -27,6 +27,8 @@
 		7115753420C39D4B00AEC025 /* HighScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7115753320C39D4B00AEC025 /* HighScoreManager.m */; };
 		7115753820C3CEAB00AEC025 /* GameMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 7115753720C3CEAB00AEC025 /* GameMgr.m */; };
 		71EE6838212D58B00078D258 /* roll.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71EE6837212D58B00078D258 /* roll.wav */; };
+		71EE683A212D5E4A0078D258 /* farkle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71EE6839212D5E4A0078D258 /* farkle.wav */; };
+		71EE683C212D5F200078D258 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71EE683B212D5F200078D258 /* tick.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		7115753620C3CEAB00AEC025 /* GameMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameMgr.h; sourceTree = "<group>"; };
 		7115753720C3CEAB00AEC025 /* GameMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameMgr.m; sourceTree = "<group>"; };
 		71EE6837212D58B00078D258 /* roll.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = roll.wav; sourceTree = "<group>"; };
+		71EE6839212D5E4A0078D258 /* farkle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = farkle.wav; sourceTree = "<group>"; };
+		71EE683B212D5F200078D258 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,8 @@
 		71EE6834212D55E80078D258 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				71EE683B212D5F200078D258 /* tick.wav */,
+				71EE6839212D5E4A0078D258 /* farkle.wav */,
 				71EE6837212D58B00078D258 /* roll.wav */,
 			);
 			path = Sound;
@@ -228,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71EE683A212D5E4A0078D258 /* farkle.wav in Resources */,
 				710A268920AFE2FC00D0F0CB /* 6.png in Resources */,
 				710A268720AFE2FC00D0F0CB /* 4.png in Resources */,
 				710A268820AFE2FC00D0F0CB /* 5.png in Resources */,
@@ -240,6 +247,7 @@
 				71EE6838212D58B00078D258 /* roll.wav in Resources */,
 				710A267220AFD26800D0F0CB /* README.md in Resources */,
 				710A266420AFD1F900D0F0CB /* Main.storyboard in Resources */,
+				71EE683C212D5F200078D258 /* tick.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

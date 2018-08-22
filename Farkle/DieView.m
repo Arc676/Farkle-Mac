@@ -58,6 +58,11 @@
 	self.pickable = [@[@NO, @NO, @NO, @NO, @NO, @NO] mutableCopy];
 	self.gameStarted = NO;
 	self.hasFarkled = NO;
+
+	self.rollSound = [NSSound soundNamed:@"roll.wav"];
+	self.farkleSound = [NSSound soundNamed:@"farkle.wav"];
+	self.tickSound = [NSSound soundNamed:@"tick.wav"];
+
 	[super awakeFromNib];
 }
 
@@ -109,6 +114,7 @@
 	determinePickableDice(self.vc.roll, values, pickableDice);
 	switch (type) {
 		case FARKLE:
+			[self.farkleSound play];
 			self.userFeedback = @"Farkle! Click on the board or\npress space to pass the turn.";
 			self.hasFarkled = YES;
 			break;
@@ -123,6 +129,7 @@
 			}
 			break;
 		default:
+			[self.rollSound play];
 			self.userFeedback = @"";
 			break;
 	}
@@ -147,6 +154,7 @@
 	for (NSString* r in self.rects) {
 		if (NSPointInRect(loc, NSRectFromString(r))) {
 			toggleDie(self.vc.roll, i);
+			[self.tickSound play];
 			[self setNeedsDisplay:YES];
 			return;
 		}
