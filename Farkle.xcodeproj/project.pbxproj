@@ -30,6 +30,8 @@
 		71EE683A212D5E4A0078D258 /* farkle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71EE6839212D5E4A0078D258 /* farkle.wav */; };
 		71EE683C212D5F200078D258 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71EE683B212D5F200078D258 /* tick.wav */; };
 		71EE683E212D60540078D258 /* bank.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 71EE683D212D60540078D258 /* bank.m4a */; };
+		71EE6841212D62C90078D258 /* tpair.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71EE683F212D62C90078D258 /* tpair.wav */; };
+		71EE6842212D62C90078D258 /* straight.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71EE6840212D62C90078D258 /* straight.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		71EE6839212D5E4A0078D258 /* farkle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = farkle.wav; sourceTree = "<group>"; };
 		71EE683B212D5F200078D258 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
 		71EE683D212D60540078D258 /* bank.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = bank.m4a; sourceTree = "<group>"; };
+		71EE683F212D62C90078D258 /* tpair.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tpair.wav; sourceTree = "<group>"; };
+		71EE6840212D62C90078D258 /* straight.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = straight.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,8 @@
 		71EE6834212D55E80078D258 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				71EE6840212D62C90078D258 /* straight.wav */,
+				71EE683F212D62C90078D258 /* tpair.wav */,
 				71EE683D212D60540078D258 /* bank.m4a */,
 				71EE683B212D5F200078D258 /* tick.wav */,
 				71EE6839212D5E4A0078D258 /* farkle.wav */,
@@ -241,7 +247,9 @@
 				710A268920AFE2FC00D0F0CB /* 6.png in Resources */,
 				710A268720AFE2FC00D0F0CB /* 4.png in Resources */,
 				710A268820AFE2FC00D0F0CB /* 5.png in Resources */,
+				71EE6842212D62C90078D258 /* straight.wav in Resources */,
 				710A267420AFD3F900D0F0CB /* Credits.rtf in Resources */,
+				71EE6841212D62C90078D258 /* tpair.wav in Resources */,
 				710A267120AFD26800D0F0CB /* LICENSE in Resources */,
 				710A268520AFE2FC00D0F0CB /* 2.png in Resources */,
 				710A268620AFE2FC00D0F0CB /* 3.png in Resources */,

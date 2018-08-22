@@ -41,7 +41,7 @@
 @property (strong) NSMutableArray* pickable;
 @property (strong) NSString* userFeedback;
 
-@property (strong) NSSound *rollSound, *farkleSound, *tickSound;
+@property (strong) NSSound *rollSound, *farkleSound, *tickSound, *tpairSound, *straightSound;
 
 - (void) setGameState:(BOOL)inProgress;
 - (void) updateRoll:(RollType)type;

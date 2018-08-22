@@ -62,6 +62,8 @@
 	self.rollSound = [NSSound soundNamed:@"roll.wav"];
 	self.farkleSound = [NSSound soundNamed:@"farkle.wav"];
 	self.tickSound = [NSSound soundNamed:@"tick.wav"];
+	self.tpairSound = [NSSound soundNamed:@"tpair.wav"];
+	self.straightSound = [NSSound soundNamed:@"straight.wav"];
 
 	[super awakeFromNib];
 }
@@ -119,9 +121,11 @@
 			self.hasFarkled = YES;
 			break;
 		case STRAIGHT:
+			[self.straightSound play];
 			self.userFeedback = @"Straight!";
 		case TRIPLE_PAIR:
 			if (type != STRAIGHT) {
+				[self.tpairSound play];
 				self.userFeedback = @"Triple pair!";
 			}
 			for (int i = 0; i < 6; i++) {
