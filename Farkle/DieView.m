@@ -153,12 +153,17 @@
 	NSPoint loc = [self convertPoint:event.locationInWindow fromView:nil];
 	for (NSString* r in self.rects) {
 		if (NSPointInRect(loc, NSRectFromString(r))) {
-			toggleDie(self.vc.roll, i);
-			[self.tickSound play];
-			[self setNeedsDisplay:YES];
+			[self toggle:i];
 			return;
 		}
 		i++;
+	}
+}
+
+- (void)keyDown:(NSEvent *)event {
+	int i = [event.characters intValue];
+	if (!(i >= 1 && i <= 6)) {
+		[super keyDown:event];
 	}
 }
 
@@ -166,13 +171,18 @@
 	if (self.vc.state == PICKING) {
 		int i = [event.characters intValue];
 		if (i >= 1 && i <= 6) {
-			toggleDie(self.vc.roll, i - 1);
-			[self setNeedsDisplay:YES];
+			[self toggle:i - 1];
 		}
 	} else if (self.hasFarkled && event.keyCode == 49) {
 		self.userFeedback = @"";
 		[self.vc endTurn];
 	}
+}
+
+- (void)toggle:(int)index {
+	toggleDie(self.vc.roll, index);
+	[self.tickSound play];
+	[self setNeedsDisplay:YES];
 }
 
 @end

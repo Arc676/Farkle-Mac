@@ -45,5 +45,6 @@
 
 - (void) setGameState:(BOOL)inProgress;
 - (void) updateRoll:(RollType)type;
+- (void) toggle:(int)index;
 
 @end

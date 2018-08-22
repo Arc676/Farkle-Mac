@@ -29,6 +29,7 @@
 		71EE6838212D58B00078D258 /* roll.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71EE6837212D58B00078D258 /* roll.wav */; };
 		71EE683A212D5E4A0078D258 /* farkle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71EE6839212D5E4A0078D258 /* farkle.wav */; };
 		71EE683C212D5F200078D258 /* tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71EE683B212D5F200078D258 /* tick.wav */; };
+		71EE683E212D60540078D258 /* bank.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 71EE683D212D60540078D258 /* bank.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		71EE6837212D58B00078D258 /* roll.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = roll.wav; sourceTree = "<group>"; };
 		71EE6839212D5E4A0078D258 /* farkle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = farkle.wav; sourceTree = "<group>"; };
 		71EE683B212D5F200078D258 /* tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = tick.wav; sourceTree = "<group>"; };
+		71EE683D212D60540078D258 /* bank.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = bank.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 		71EE6834212D55E80078D258 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				71EE683D212D60540078D258 /* bank.m4a */,
 				71EE683B212D5F200078D258 /* tick.wav */,
 				71EE6839212D5E4A0078D258 /* farkle.wav */,
 				71EE6837212D58B00078D258 /* roll.wav */,
@@ -245,6 +248,7 @@
 				710A266120AFD1F900D0F0CB /* Assets.xcassets in Resources */,
 				710A268420AFE2FC00D0F0CB /* 1.png in Resources */,
 				71EE6838212D58B00078D258 /* roll.wav in Resources */,
+				71EE683E212D60540078D258 /* bank.m4a in Resources */,
 				710A267220AFD26800D0F0CB /* README.md in Resources */,
 				710A266420AFD1F900D0F0CB /* Main.storyboard in Resources */,
 				71EE683C212D5F200078D258 /* tick.wav in Resources */,

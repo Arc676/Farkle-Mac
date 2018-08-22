@@ -45,6 +45,7 @@
 	self.savePanel = [NSSavePanel savePanel];
 	self.pCount = 0;
 
+	self.bankSound = [NSSound soundNamed:@"bank.m4a"];
 	[self.dieView setVc:self];
 }
 
@@ -134,6 +135,7 @@
 }
 
 - (IBAction)bankPoints:(id)sender {
+	[self.bankSound play];
 	bankPoints(self.players[self.currentPlayer]);
 	[self endTurn];
 }

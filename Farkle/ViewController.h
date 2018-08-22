@@ -33,6 +33,7 @@
 @property (weak) IBOutlet NSTableView *leaderboardTable;
 
 @property (weak) IBOutlet DieView *dieView;
+@property (strong) NSSound *bankSound;
 
 @property (weak) IBOutlet NSButton *rollButton;
 @property (weak) IBOutlet NSButton *selectionButton;
