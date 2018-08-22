@@ -46,6 +46,7 @@
 	self.pCount = 0;
 
 	[self.dieView setVc:self];
+	self.rollSound = [NSSound soundNamed:@"roll.wav"];
 }
 
 - (void)startGame:(NSNotification *)notification {
@@ -119,6 +120,7 @@
 			break;
 	}
 	[self.dieView updateRoll:type];
+	[self.rollSound play];
 }
 
 - (IBAction)confirmSelection:(id)sender {
