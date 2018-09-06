@@ -184,9 +184,15 @@
 }
 
 - (void)toggle:(int)index {
-	toggleDie(self.vc.roll, index);
-	[self.tickSound play];
-	[self setNeedsDisplay:YES];
+	switch (toggleDie(self.vc.roll, index)) {
+		case PICKED:
+		case UNPICKED:
+			[self.tickSound play];
+			[self setNeedsDisplay:YES];
+			break;
+		default:
+			break;
+	}
 }
 
 @end
